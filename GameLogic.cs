@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuizMaker_RM
 {
-    internal class GameLogic
+    public class GameLogic
     {
+        public void StoreNewQuiz(string question, string answerOne, string answerTwo, string answerThree, string correctAnswer)
+        {
+           // var newQuiz = new Quiz();
+        }
     }
 }
