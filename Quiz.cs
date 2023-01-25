@@ -17,7 +17,7 @@ namespace QuizMaker_RM
 
         public override string ToString()
         {
-            return $"{quizQuestion}, {optionAnswer1}, {optionAnswer2}, {optionAnswer3}, {correctAnswer}";
+            return $"{quizQuestion}\n, {optionAnswer1}, {optionAnswer2}, {optionAnswer3}";
         }
     }
 

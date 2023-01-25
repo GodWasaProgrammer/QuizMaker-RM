@@ -2,49 +2,40 @@
 
 namespace QuizMaker_RM
 {
-    internal class Program
+    public class Program
     {
+        public static int currentScore = 0;
+        public const int AddPoints = 10;
         static void Main()
         {
+            var quizList = new List<Quiz>();
 
-            var Quiz = new List<Quiz>();
-
-            Quiz newQuiz = new();
-
-            Console.WriteLine("Enter Your Quiz-Question:");
-            newQuiz.quizQuestion = Console.ReadLine();
-
-            Console.WriteLine("Enter Your First Answer");
-            newQuiz.optionAnswer1 = Console.ReadLine();
-
-            Console.WriteLine("Enter Your Second Answer:");
-            newQuiz.optionAnswer2 = Console.ReadLine();
-
-            Console.WriteLine("Enter Your Third Answer:");
-            newQuiz.optionAnswer3 = Console.ReadLine();
-
-            Console.WriteLine("Enter Your Correct Answer:");
-            newQuiz.correctAnswer = Console.ReadLine();
-
-            Quiz.Add(newQuiz);
-
+            // our serializer to read/write material to our QuizSheet
             XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
-            var path = "C:\\Users\\Björn\\source\\repos\\GodWasaProgrammer\\QuizMaker-RM/QuizSheet.xml";
 
-            using (FileStream file = File.OpenRead(path))
-            {
-                serializer.Serialize(file, Quiz);
-            }
+            // our pathing, i want it to be relative to our build folder, but i cant figure it out
+            var path = @"C:\Users\vemha\Desktop\Bearworks\Bearworks\Software\QuizMaker RM\QuizSheet.xml";
 
-            using (FileStream file = File.OpenRead(path))
+            // repopulates our quizlist from quizsheet.xml on program start
+            quizList = GameLogic.ReadFromXML(path, serializer, quizList);
+
+            // Welcome message
+            UI.WelcomeMessage();
+
+            do
             {
-                Quiz = serializer.Deserialize(file) as List<Quiz>;
+                UI.AddNewQuiz(quizList);
+                Console.WriteLine("You wanna add another?");
             }
             
-            foreach (var item in Quiz)
-            {
-                Console.WriteLine(item);
-            }
+            while (Console.ReadLine() == "y");
+
+            GameLogic.WriteToXML(path, serializer, quizList);
+
+            //UI.PrintOurQuizList(quizList);
+
+            UI.DoYouWishToPlay(quizList);
+
         }
     }
 }
