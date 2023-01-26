@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace QuizMaker_RM
 {
     public class Quiz
     {
         public string quizQuestion;
+        public List<string> Answers;
         public string optionAnswer1;
         public string optionAnswer2;
         public string optionAnswer3;
@@ -19,8 +15,7 @@ namespace QuizMaker_RM
         {
             return $"{quizQuestion}\n, {optionAnswer1}, {optionAnswer2}, {optionAnswer3}";
         }
-    }
 
-    
+    }
 
 }

@@ -1,5 +1,4 @@
-﻿using System.Xml;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace QuizMaker_RM
 {
@@ -14,7 +13,6 @@ namespace QuizMaker_RM
             // our serializer to read/write material to our QuizSheet
             XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
 
-            // our pathing, i want it to be relative to our build folder, but i cant figure it out
             var path = "../../../QuizSheet.xml";
 
             // repopulates our quizlist from quizsheet.xml on program start
@@ -23,23 +21,32 @@ namespace QuizMaker_RM
             // Welcome message
             UI.WelcomeMessage();
 
-            Console.WriteLine("Do you wanna add another quiz question? if so type y");
-            if(Console.ReadLine() == "y")
+            while (true)
             {
-                do
+                Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
+                switch (Console.ReadLine())
                 {
-                    UI.AddNewQuiz(quizList);
-                    Console.WriteLine("You wanna add another?");
+                    case "1":
+                        UI.AddNewQuiz(quizList);
+                        break;
+                    case "2":
+                        UI.DoYouWishToPlay(quizList);
+                        break;
+                    case "3":
+                        UI.PrintOurQuizList(quizList);
+                        break;
+                    case "4":
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Not an Option, try again!");
+                        break;
                 }
+                GameLogic.WriteToXML(path, serializer, quizList);
 
-                while (Console.ReadLine() == "y");
             }
-            
-
-            GameLogic.WriteToXML(path, serializer, quizList);
-
-            UI.DoYouWishToPlay(quizList);
 
         }
+
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace QuizMaker_RM
 {
@@ -49,21 +43,6 @@ namespace QuizMaker_RM
             return ourrandomquestions;
         }
 
-        public static void PrintOurFiveQuestions(List<Quiz> quizList)
-        {
-            List<int> ourfivequestions = new List<int>();
-            ourfivequestions = GameLogic.PickFiveQuestions(quizList);
-
-            foreach (int currentquestion in ourfivequestions)
-            {
-                Console.WriteLine(quizList[currentquestion].ToString());
-
-                CheckIfAnswerIsCorrect(quizList, currentquestion);
-
-                UI.PrintCurrentScore(Program.currentScore);
-            }
-
-        }
         public static string CheckIfAnswerIsInTheOptions(List<Quiz> quizList, int currentquestion)
         {
             bool isYourAnswerInOurAnswers = false;
@@ -97,11 +76,13 @@ namespace QuizMaker_RM
                 return yourAnswer;
             }
             while (isYourAnswerInOurAnswers == false);
+
         }
+
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
             string yourAnswer = CheckIfAnswerIsInTheOptions(quizList, currentquestion);
-            
+
             if (yourAnswer == quizList[currentquestion].correctAnswer)
             {
                 Console.WriteLine("That is Correct!");

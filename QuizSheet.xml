@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Quiz>
-    <quizQuestion>Who crossed the river?</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Who Crossed The River?</quizQuestion>
+    <optionAnswer1>John</optionAnswer1>
+    <optionAnswer2>Eric</optionAnswer2>
+    <optionAnswer3>Adam</optionAnswer3>
+    <correctAnswer>Eric</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Who Invented Dynamite?</quizQuestion>
+    <optionAnswer1>Larry The Cable Guy</optionAnswer1>
+    <optionAnswer2>A Swede</optionAnswer2>
+    <optionAnswer3>Alfred Nobel</optionAnswer3>
+    <correctAnswer>Alfred Nobel</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>What was the famous oceanliner that sunk around the last century called?</quizQuestion>
+    <optionAnswer1>HMS Titanic</optionAnswer1>
+    <optionAnswer2>HMS Odyssey</optionAnswer2>
+    <optionAnswer3>HMS Cupid</optionAnswer3>
+    <correctAnswer>HMS Titanic</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Which artist famously cut his ear off?</quizQuestion>
+    <optionAnswer1>Alfred Nobel</optionAnswer1>
+    <optionAnswer2>Van Gogh</optionAnswer2>
+    <optionAnswer3>George Carling</optionAnswer3>
+    <correctAnswer>Van Gogh</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Who was the Main Character in Alice In Wonderland?</quizQuestion>
+    <optionAnswer1>The Cat smoking Opium</optionAnswer1>
+    <optionAnswer2>Alice</optionAnswer2>
+    <optionAnswer3>The Rabbit</optionAnswer3>
+    <correctAnswer>The Cat smoking Opium</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Crank is a movie about?</quizQuestion>
+    <optionAnswer1>A MadMan</optionAnswer1>
+    <optionAnswer2>Frogs</optionAnswer2>
+    <optionAnswer3>Cats</optionAnswer3>
+    <correctAnswer>A MadMan</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>What did Jeffrey Dahmer like to eat?</quizQuestion>
+    <optionAnswer1>young men</optionAnswer1>
+    <optionAnswer2>Human Meat</optionAnswer2>
+    <optionAnswer3>Cats</optionAnswer3>
+    <correctAnswer>Human Meat</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>aef</quizQuestion>
-    <optionAnswer1>aef</optionAnswer1>
-    <optionAnswer2>aef</optionAnswer2>
-    <optionAnswer3>aef</optionAnswer3>
-    <correctAnswer>aef</correctAnswer>
+    <quizQuestion>Swedish Game Studio, does alot of Grand Strategy?</quizQuestion>
+    <optionAnswer1>Coffee Stain Studios</optionAnswer1>
+    <optionAnswer2>DICE</optionAnswer2>
+    <optionAnswer3>Paradox</optionAnswer3>
+    <correctAnswer>Paradox</correctAnswer>
   </Quiz>
   <Quiz>
     <quizQuestion>who crossed the river?</quizQuestion>
@@ -71,10 +71,17 @@
     <correctAnswer>Johnny</correctAnswer>
   </Quiz>
   <Quiz>
-    <quizQuestion>Who is the big daddy of programming?</quizQuestion>
-    <optionAnswer1>leithner</optionAnswer1>
-    <optionAnswer2>rakete</optionAnswer2>
-    <optionAnswer3>me</optionAnswer3>
-    <correctAnswer>me</correctAnswer>
+    <quizQuestion>Who is the prettiest?</quizQuestion>
+    <optionAnswer1>Adam</optionAnswer1>
+    <optionAnswer2>Eric</optionAnswer2>
+    <optionAnswer3>Me</optionAnswer3>
+    <correctAnswer>Me</correctAnswer>
+  </Quiz>
+  <Quiz>
+    <quizQuestion />
+    <optionAnswer1 />
+    <optionAnswer2 />
+    <optionAnswer3 />
+    <correctAnswer />
   </Quiz>
 </ArrayOfQuiz>
