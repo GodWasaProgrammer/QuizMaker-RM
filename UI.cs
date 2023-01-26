@@ -18,8 +18,13 @@
                 {
                     Console.WriteLine("Enter Your Quiz-Question:");
                     newQuiz.quizQuestion = Console.ReadLine();
+
+                    if (newQuiz.quizQuestion == string.Empty)
+                    {
+                        Console.WriteLine("You have to type a question.");
+                    }
                 }
-                while (newQuiz.quizQuestion == null);
+                while (newQuiz.quizQuestion == string.Empty);
 
                 List<string> oneTwoThree = new List<string>();
                 oneTwoThree.Add("First");
@@ -44,7 +49,6 @@
                     }
 
                 }
-                        //does null or string empty count as length?
                 while (newQuiz.Answers.Count < 3);
 
                 do
@@ -54,11 +58,8 @@
                 }
                 while (!newQuiz.Answers.Contains(newQuiz.correctAnswer));
 
-                //needs to be changed to something less crazy
-                if (newQuiz.quizQuestion != string.Empty && newQuiz.Answers[0] != string.Empty && newQuiz.Answers[1] != string.Empty && newQuiz.Answers[2] != string.Empty && newQuiz.correctAnswer != string.Empty)
-                {
                     quizList.Add(newQuiz);
-                }
+                
                 Console.WriteLine("Do you want to add more? if so press y");
             } 
 
