@@ -62,20 +62,6 @@ namespace QuizMaker_RM
                 {
                     isYourAnswerInOurAnswers = true;
                 }
-                //if (yourAnswer == quizList[currentquestion].Answers[0])
-                //{
-                //    isYourAnswerInOurAnswers = true;
-                //}
-
-                //if (yourAnswer == quizList[currentquestion].Answers[1])
-                //{
-                //    isYourAnswerInOurAnswers = true;
-                //}
-
-                //if (yourAnswer == quizList[currentquestion].Answers[2])
-                //{
-                //    isYourAnswerInOurAnswers = true;
-                //}
 
                 return yourAnswer;
             }

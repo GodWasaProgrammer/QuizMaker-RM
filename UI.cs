@@ -51,12 +51,30 @@
                 }
                 while (newQuiz.Answers.Count < 3);
 
+                int correctAnswerByIndex;
                 do
                 {
-                    Console.WriteLine("Enter Your Correct Answer:");
-                    newQuiz.correctAnswer = Console.ReadLine();
+                    iterator = 0;
+                    foreach (string item in newQuiz.Answers)
+                    {
+                        iterator++;
+                        Console.WriteLine($"{iterator}.{item}");
+                    }
+                    Console.WriteLine("Enter Your Correct Answer by number:");
+
+                    Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
+                    correctAnswerByIndex--;
+                    if (correctAnswerByIndex < 0 || correctAnswerByIndex > 2)
+                    {
+                        Console.WriteLine("You need to input a valid indexposition");
+                    }
+                    else
+                    {
+                        newQuiz.Answers[correctAnswerByIndex] = newQuiz.Answers[correctAnswerByIndex] + "*";
+                    }
+
                 }
-                while (!newQuiz.Answers.Contains(newQuiz.correctAnswer));
+                while (!newQuiz.Answers[correctAnswerByIndex].Contains("*"));
 
                     quizList.Add(newQuiz);
                 
