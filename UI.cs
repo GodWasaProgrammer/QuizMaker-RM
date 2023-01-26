@@ -35,7 +35,7 @@
                 {
                     iterator++;
                     Console.WriteLine($"Enter Your {oneTwoThree[iterator]} Answer");
-                    
+
                     string input = Console.ReadLine();
 
                     if (input == string.Empty || input == null)
@@ -43,9 +43,9 @@
                         iterator--;
                         Console.WriteLine("You have to type an answer.");
                     }
-                    else 
-                    { 
-                    newQuiz.Answers.Add(input);
+                    else
+                    {
+                        newQuiz.Answers.Add(input);
                     }
 
                 }
@@ -76,10 +76,10 @@
                 }
                 while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
 
-                    quizList.Add(newQuiz);
-                
+                quizList.Add(newQuiz);
+
                 Console.WriteLine("Do you want to add more? if so press y");
-            } 
+            }
 
             while (Console.ReadLine().ToLower() == "y");
 

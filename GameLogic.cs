@@ -42,46 +42,62 @@ namespace QuizMaker_RM
 
             return ourrandomquestions;
         }
+        // possible rework
+        //public static string CheckIfAnswerIsInTheOptions(List<Quiz> quizList, int currentquestion)
+        //{
+        //    bool isYourAnswerInOurAnswers = false;
+        //    string yourAnswer;
+        //    do
+        //    {
+        //        Console.WriteLine("Pick your answer.");
+        //        yourAnswer = Console.ReadLine();
 
-        public static string CheckIfAnswerIsInTheOptions(List<Quiz> quizList, int currentquestion)
-        {
-            bool isYourAnswerInOurAnswers = false;
-            string yourAnswer;
-            do
-            {
-                Console.WriteLine("Pick your answer.");
-                yourAnswer = Console.ReadLine();
+        //        if (yourAnswer == string.Empty)
+        //        {
+        //            Console.WriteLine("Your answer has to be one of the three options, you cant leave it blank.");
 
-                if (yourAnswer == string.Empty)
-                {
-                    Console.WriteLine("Your answer has to be one of the three options, you cant leave it blank.");
+        //        }
 
-                }
+        //        if (quizList[currentquestion].Answers.Contains(yourAnswer))
+        //        {
+        //            isYourAnswerInOurAnswers = true;
+        //        }
 
-                if (quizList[currentquestion].Answers.Contains(yourAnswer))
-                {
-                    isYourAnswerInOurAnswers = true;
-                }
+        //        return yourAnswer;
+        //    }
+        //    while (isYourAnswerInOurAnswers == false);
 
-                return yourAnswer;
-            }
-            while (isYourAnswerInOurAnswers == false);
-
-        }
-
+        //}
+        // needs rework
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            string yourAnswer = CheckIfAnswerIsInTheOptions(quizList, currentquestion);
+            //string yourAnswer = CheckIfAnswerIsInTheOptions(quizList, currentquestion);
 
-            if (yourAnswer == quizList[currentquestion].correctAnswer)
+            bool didItParse = Int32.TryParse(Console.ReadLine(), out int answerByIndex);
+
+
+            if (didItParse)
             {
-                Console.WriteLine("That is Correct!");
-                Program.currentScore += Program.AddPoints;
+                if (quizList[currentquestion].Answers[answerByIndex].Contains("*"))
+                {
+                    Console.WriteLine("That is Correct!");
+                    Program.currentScore += Program.AddPoints;
+                }
+                else
+                {
+                    Console.WriteLine("That is not correct...");
+                }
             }
-            else
-            {
-                Console.WriteLine("That is not correct...");
-            }
+
+            //if (quizList[currentquestion].Answers.Contains(yourAnswer + "*") == true)
+            //{
+            //    Console.WriteLine("That is Correct!");
+            //    Program.currentScore += Program.AddPoints;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("That is not correct...");
+            //}
 
         }
 

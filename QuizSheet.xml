@@ -3,7 +3,7 @@
   <Quiz>
     <quizQuestion>Who Was God?</quizQuestion>
     <Answers>
-      <string>Programmer</string>
+      <string>Programmer*</string>
       <string>Gamer</string>
       <string>Man</string>
     </Answers>
@@ -12,10 +12,18 @@
   <Quiz>
     <quizQuestion>Who was the first known Programmer?</quizQuestion>
     <Answers>
-      <string>lady from 1800s</string>
+      <string>lady from 1800s*</string>
       <string>Mussolini</string>
       <string>Tito</string>
     </Answers>
     <correctAnswer>lady from 1800s</correctAnswer>
+  </Quiz>
+  <Quiz>
+    <quizQuestion>Who Crossed The river?</quizQuestion>
+    <Answers>
+      <string>John</string>
+      <string>Eric*</string>
+      <string>Adam</string>
+    </Answers>
   </Quiz>
 </ArrayOfQuiz>
