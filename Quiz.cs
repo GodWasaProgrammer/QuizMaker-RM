@@ -1,19 +1,14 @@
-﻿using System.Runtime.InteropServices;
-
-namespace QuizMaker_RM
+﻿namespace QuizMaker_RM
 {
     public class Quiz
     {
         public string quizQuestion;
-        public List<string> Answers;
-        public string optionAnswer1;
-        public string optionAnswer2;
-        public string optionAnswer3;
+        public List<string> Answers = new List<string>();
         public string correctAnswer;
 
         public override string ToString()
         {
-            return $"{quizQuestion}\n, {optionAnswer1}, {optionAnswer2}, {optionAnswer3}";
+            return $"{quizQuestion}\n {Answers[0]}, {Answers[1]}, {Answers[2]}";
         }
 
     }

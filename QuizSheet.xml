@@ -1,87 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Quiz>
-    <quizQuestion>Who Crossed The River?</quizQuestion>
-    <optionAnswer1>John</optionAnswer1>
-    <optionAnswer2>Eric</optionAnswer2>
-    <optionAnswer3>Adam</optionAnswer3>
-    <correctAnswer>Eric</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Who Invented Dynamite?</quizQuestion>
-    <optionAnswer1>Larry The Cable Guy</optionAnswer1>
-    <optionAnswer2>A Swede</optionAnswer2>
-    <optionAnswer3>Alfred Nobel</optionAnswer3>
-    <correctAnswer>Alfred Nobel</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>What was the famous oceanliner that sunk around the last century called?</quizQuestion>
-    <optionAnswer1>HMS Titanic</optionAnswer1>
-    <optionAnswer2>HMS Odyssey</optionAnswer2>
-    <optionAnswer3>HMS Cupid</optionAnswer3>
-    <correctAnswer>HMS Titanic</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Which artist famously cut his ear off?</quizQuestion>
-    <optionAnswer1>Alfred Nobel</optionAnswer1>
-    <optionAnswer2>Van Gogh</optionAnswer2>
-    <optionAnswer3>George Carling</optionAnswer3>
-    <correctAnswer>Van Gogh</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Who was the Main Character in Alice In Wonderland?</quizQuestion>
-    <optionAnswer1>The Cat smoking Opium</optionAnswer1>
-    <optionAnswer2>Alice</optionAnswer2>
-    <optionAnswer3>The Rabbit</optionAnswer3>
-    <correctAnswer>The Cat smoking Opium</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Crank is a movie about?</quizQuestion>
-    <optionAnswer1>A MadMan</optionAnswer1>
-    <optionAnswer2>Frogs</optionAnswer2>
-    <optionAnswer3>Cats</optionAnswer3>
-    <correctAnswer>A MadMan</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>What did Jeffrey Dahmer like to eat?</quizQuestion>
-    <optionAnswer1>young men</optionAnswer1>
-    <optionAnswer2>Human Meat</optionAnswer2>
-    <optionAnswer3>Cats</optionAnswer3>
-    <correctAnswer>Human Meat</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Swedish Game Studio, does alot of Grand Strategy?</quizQuestion>
-    <optionAnswer1>Coffee Stain Studios</optionAnswer1>
-    <optionAnswer2>DICE</optionAnswer2>
-    <optionAnswer3>Paradox</optionAnswer3>
-    <correctAnswer>Paradox</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>who crossed the river?</quizQuestion>
-    <optionAnswer1>johnny</optionAnswer1>
-    <optionAnswer2>benny</optionAnswer2>
-    <optionAnswer3>adam</optionAnswer3>
-    <correctAnswer>adam</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Who is the greatest programmer?</quizQuestion>
-    <optionAnswer1>Adam</optionAnswer1>
-    <optionAnswer2>Benny</optionAnswer2>
-    <optionAnswer3>Johnny</optionAnswer3>
-    <correctAnswer>Johnny</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion>Who is the prettiest?</quizQuestion>
-    <optionAnswer1>Adam</optionAnswer1>
-    <optionAnswer2>Eric</optionAnswer2>
-    <optionAnswer3>Me</optionAnswer3>
-    <correctAnswer>Me</correctAnswer>
-  </Quiz>
-  <Quiz>
-    <quizQuestion />
-    <optionAnswer1 />
-    <optionAnswer2 />
-    <optionAnswer3 />
-    <correctAnswer />
+    <quizQuestion>Who Was God?</quizQuestion>
+    <Answers>
+      <string>Programmer</string>
+      <string>Gamer</string>
+      <string>Man</string>
+    </Answers>
+    <correctAnswer>Programmer</correctAnswer>
   </Quiz>
 </ArrayOfQuiz>

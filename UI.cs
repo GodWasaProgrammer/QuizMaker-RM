@@ -21,40 +21,47 @@
                 }
                 while (newQuiz.quizQuestion == null);
 
+                List<string> oneTwoThree = new List<string>();
+                oneTwoThree.Add("First");
+                oneTwoThree.Add("Second");
+                oneTwoThree.Add("Third");
+                int iterator = -1;
                 do
                 {
-                    Console.WriteLine("Enter Your First Answer");
-                    newQuiz.optionAnswer1 = Console.ReadLine();
-                }
-                while (newQuiz.optionAnswer1 == null);
+                    iterator++;
+                    Console.WriteLine($"Enter Your {oneTwoThree[iterator]} Answer");
+                    
+                    string input = Console.ReadLine();
 
-                do
-                {
-                    Console.WriteLine("Enter Your Second Answer:");
-                    newQuiz.optionAnswer2 = Console.ReadLine();
-                }
-                while (newQuiz.optionAnswer2 == null);
+                    if (input == string.Empty || input == null)
+                    {
+                        iterator--;
+                        Console.WriteLine("You have to type an answer.");
+                    }
+                    else 
+                    { 
+                    newQuiz.Answers.Add(input);
+                    }
 
-                do
-                {
-                    Console.WriteLine("Enter Your Third Answer:");
-                    newQuiz.optionAnswer3 = Console.ReadLine();
                 }
-                while (newQuiz.optionAnswer3 == null);
+                        //does null or string empty count as length?
+                while (newQuiz.Answers.Count < 3);
 
                 do
                 {
                     Console.WriteLine("Enter Your Correct Answer:");
                     newQuiz.correctAnswer = Console.ReadLine();
-                }//change for !contains?
-                while (newQuiz.correctAnswer != newQuiz.optionAnswer1 && newQuiz.correctAnswer != newQuiz.optionAnswer2 && newQuiz.correctAnswer != newQuiz.optionAnswer3);
+                }
+                while (!newQuiz.Answers.Contains(newQuiz.correctAnswer));
+
                 //needs to be changed to something less crazy
-                if (newQuiz.quizQuestion != string.Empty && newQuiz.optionAnswer1 != string.Empty && newQuiz.optionAnswer2 != string.Empty && newQuiz.optionAnswer3 != string.Empty && newQuiz.correctAnswer != string.Empty)
+                if (newQuiz.quizQuestion != string.Empty && newQuiz.Answers[0] != string.Empty && newQuiz.Answers[1] != string.Empty && newQuiz.Answers[2] != string.Empty && newQuiz.correctAnswer != string.Empty)
                 {
                     quizList.Add(newQuiz);
                 }
-
+                Console.WriteLine("Do you want to add more? if so press y");
             } 
+
             while (Console.ReadLine().ToLower() == "y");
 
         }

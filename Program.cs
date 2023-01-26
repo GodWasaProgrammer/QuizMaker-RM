@@ -42,6 +42,7 @@ namespace QuizMaker_RM
                         Console.WriteLine("Not an Option, try again!");
                         break;
                 }
+
                 GameLogic.WriteToXML(path, serializer, quizList);
 
             }

@@ -58,17 +58,17 @@ namespace QuizMaker_RM
 
                 }
 
-                if (yourAnswer == quizList[currentquestion].optionAnswer1)
+                if (yourAnswer == quizList[currentquestion].Answers[0])
                 {
                     isYourAnswerInOurAnswers = true;
                 }
 
-                if (yourAnswer == quizList[currentquestion].optionAnswer2)
+                if (yourAnswer == quizList[currentquestion].Answers[1])
                 {
                     isYourAnswerInOurAnswers = true;
                 }
 
-                if (yourAnswer == quizList[currentquestion].optionAnswer3)
+                if (yourAnswer == quizList[currentquestion].Answers[2])
                 {
                     isYourAnswerInOurAnswers = true;
                 }
