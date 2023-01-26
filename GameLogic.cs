@@ -57,22 +57,59 @@ namespace QuizMaker_RM
             foreach (int currentquestion in ourfivequestions)
             {
                 Console.WriteLine(quizList[currentquestion].ToString());
-                Console.WriteLine("Pick your answer.");
 
-                string yourAnswer = Console.ReadLine();
-
-                if (yourAnswer == quizList[currentquestion].correctAnswer)
-                {
-                    Console.WriteLine("That is Correct!");
-                    Program.currentScore += Program.AddPoints;
-                }
-
-                else
-                {
-                    Console.WriteLine("That is not correct...");
-                }
+                CheckIfAnswerIsCorrect(quizList, currentquestion);
 
                 UI.PrintCurrentScore(Program.currentScore);
+            }
+
+        }
+        public static string CheckIfAnswerIsInTheOptions(List<Quiz> quizList, int currentquestion)
+        {
+            bool isYourAnswerInOurAnswers = false;
+            string yourAnswer;
+            do
+            {
+                Console.WriteLine("Pick your answer.");
+                yourAnswer = Console.ReadLine();
+
+                if (yourAnswer == string.Empty)
+                {
+                    Console.WriteLine("Your answer has to be one of the three options, you cant leave it blank.");
+
+                }
+
+                if (yourAnswer == quizList[currentquestion].optionAnswer1)
+                {
+                    isYourAnswerInOurAnswers = true;
+                }
+
+                if (yourAnswer == quizList[currentquestion].optionAnswer2)
+                {
+                    isYourAnswerInOurAnswers = true;
+                }
+
+                if (yourAnswer == quizList[currentquestion].optionAnswer3)
+                {
+                    isYourAnswerInOurAnswers = true;
+                }
+
+                return yourAnswer;
+            }
+            while (isYourAnswerInOurAnswers == false);
+        }
+        public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
+        {
+            string yourAnswer = CheckIfAnswerIsInTheOptions(quizList, currentquestion);
+            
+            if (yourAnswer == quizList[currentquestion].correctAnswer)
+            {
+                Console.WriteLine("That is Correct!");
+                Program.currentScore += Program.AddPoints;
+            }
+            else
+            {
+                Console.WriteLine("That is not correct...");
             }
 
         }

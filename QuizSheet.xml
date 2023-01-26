@@ -56,4 +56,25 @@
     <optionAnswer3>aef</optionAnswer3>
     <correctAnswer>aef</correctAnswer>
   </Quiz>
+  <Quiz>
+    <quizQuestion>who crossed the river?</quizQuestion>
+    <optionAnswer1>johnny</optionAnswer1>
+    <optionAnswer2>benny</optionAnswer2>
+    <optionAnswer3>adam</optionAnswer3>
+    <correctAnswer>adam</correctAnswer>
+  </Quiz>
+  <Quiz>
+    <quizQuestion>Who is the greatest programmer?</quizQuestion>
+    <optionAnswer1>Adam</optionAnswer1>
+    <optionAnswer2>Benny</optionAnswer2>
+    <optionAnswer3>Johnny</optionAnswer3>
+    <correctAnswer>Johnny</correctAnswer>
+  </Quiz>
+  <Quiz>
+    <quizQuestion>Who is the big daddy of programming?</quizQuestion>
+    <optionAnswer1>leithner</optionAnswer1>
+    <optionAnswer2>rakete</optionAnswer2>
+    <optionAnswer3>me</optionAnswer3>
+    <correctAnswer>me</correctAnswer>
+  </Quiz>
 </ArrayOfQuiz>
