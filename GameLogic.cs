@@ -58,20 +58,24 @@ namespace QuizMaker_RM
 
                 }
 
-                if (yourAnswer == quizList[currentquestion].Answers[0])
+                if (quizList[currentquestion].Answers.Contains(yourAnswer))
                 {
                     isYourAnswerInOurAnswers = true;
                 }
+                //if (yourAnswer == quizList[currentquestion].Answers[0])
+                //{
+                //    isYourAnswerInOurAnswers = true;
+                //}
 
-                if (yourAnswer == quizList[currentquestion].Answers[1])
-                {
-                    isYourAnswerInOurAnswers = true;
-                }
+                //if (yourAnswer == quizList[currentquestion].Answers[1])
+                //{
+                //    isYourAnswerInOurAnswers = true;
+                //}
 
-                if (yourAnswer == quizList[currentquestion].Answers[2])
-                {
-                    isYourAnswerInOurAnswers = true;
-                }
+                //if (yourAnswer == quizList[currentquestion].Answers[2])
+                //{
+                //    isYourAnswerInOurAnswers = true;
+                //}
 
                 return yourAnswer;
             }
