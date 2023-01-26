@@ -74,7 +74,7 @@
                     }
 
                 }
-                while (!newQuiz.Answers[correctAnswerByIndex].Contains("*"));
+                while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
 
                     quizList.Add(newQuiz);
                 
