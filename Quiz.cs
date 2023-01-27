@@ -4,7 +4,6 @@
     {
         public string quizQuestion;
         public List<string> Answers = new List<string>();
-        public string correctAnswer;
 
         public override string ToString()
         {

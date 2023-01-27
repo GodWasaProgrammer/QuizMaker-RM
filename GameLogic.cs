@@ -42,39 +42,35 @@ namespace QuizMaker_RM
 
             return ourrandomquestions;
         }
-        // possible rework
-        //public static string CheckIfAnswerIsInTheOptions(List<Quiz> quizList, int currentquestion)
-        //{
-        //    bool isYourAnswerInOurAnswers = false;
-        //    string yourAnswer;
-        //    do
-        //    {
-        //        Console.WriteLine("Pick your answer.");
-        //        yourAnswer = Console.ReadLine();
 
-        //        if (yourAnswer == string.Empty)
-        //        {
-        //            Console.WriteLine("Your answer has to be one of the three options, you cant leave it blank.");
-
-        //        }
-
-        //        if (quizList[currentquestion].Answers.Contains(yourAnswer))
-        //        {
-        //            isYourAnswerInOurAnswers = true;
-        //        }
-
-        //        return yourAnswer;
-        //    }
-        //    while (isYourAnswerInOurAnswers == false);
-
-        //}
-        // needs rework
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            //string yourAnswer = CheckIfAnswerIsInTheOptions(quizList, currentquestion);
 
-            bool didItParse = Int32.TryParse(Console.ReadLine(), out int answerByIndex);
+            int answerByIndex;
+            bool didItParse;
+            do
+            {
+                Console.WriteLine("Pick your answer by index");
+                int iterator = 0;
+                foreach (string answer in quizList[currentquestion].Answers)
+                {
+                    iterator++;
+                    Console.WriteLine($"{iterator}{answer}");
+                }
 
+                didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
+                answerByIndex--;
+                if (answerByIndex > 2)
+                {
+                    Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
+                }
+                if (didItParse == false)
+                {
+                    Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
+                }
+
+            }
+            while (answerByIndex > 2);
 
             if (didItParse)
             {
@@ -87,17 +83,8 @@ namespace QuizMaker_RM
                 {
                     Console.WriteLine("That is not correct...");
                 }
-            }
 
-            //if (quizList[currentquestion].Answers.Contains(yourAnswer + "*") == true)
-            //{
-            //    Console.WriteLine("That is Correct!");
-            //    Program.currentScore += Program.AddPoints;
-            //}
-            //else
-            //{
-            //    Console.WriteLine("That is not correct...");
-            //}
+            }
 
         }
 

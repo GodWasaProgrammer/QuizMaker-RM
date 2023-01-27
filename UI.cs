@@ -124,6 +124,9 @@
 
             foreach (int currentquestion in ourfivequestions)
             {
+                Quiz mirror = new Quiz();
+                int indexOfOurCorrectAnswerAsterisk = quizList[currentquestion].Answers.IndexOf("*");
+
                 Console.WriteLine(quizList[currentquestion].ToString());
 
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
