@@ -32,4 +32,12 @@
       <string>Eric</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>Who reset the alarm a million times?</quizQuestion>
+    <Answers>
+      <string>Björn</string>
+      <string>Johnny*</string>
+      <string>Adam</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>

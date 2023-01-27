@@ -55,7 +55,7 @@ namespace QuizMaker_RM
                 foreach (string answer in quizList[currentquestion].Answers)
                 {
                     iterator++;
-                    Console.WriteLine($"{iterator}{answer}");
+                    Console.WriteLine($"{iterator} {answer.Trim(new char[]{'*'})}");
                 }
 
                 didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
