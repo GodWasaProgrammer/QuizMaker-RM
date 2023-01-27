@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return $"{quizQuestion}\n {Answers[0]}, {Answers[1]}, {Answers[2]}";
+            return $"{quizQuestion}\n {Answers[0].Trim(new char[] {'*'})}, {Answers[1].Trim(new char[] {'*'})}, {Answers[2].Trim(new char[] { '*' })}";
         }
 
     }

@@ -127,7 +127,7 @@
                 Quiz mirror = new Quiz();
                 int indexOfOurCorrectAnswerAsterisk = quizList[currentquestion].Answers.IndexOf("*");
 
-                Console.WriteLine(quizList[currentquestion].ToString());
+                Console.WriteLine(quizList[currentquestion].ToString().Trim(new char[] { '*' }));
 
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
 

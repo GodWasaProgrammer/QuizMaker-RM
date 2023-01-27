@@ -74,7 +74,7 @@ namespace QuizMaker_RM
 
             if (didItParse)
             {
-                if (quizList[currentquestion].Answers[answerByIndex].Contains("*"))
+                if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
                 {
                     Console.WriteLine("That is Correct!");
                     Program.currentScore += Program.AddPoints;
