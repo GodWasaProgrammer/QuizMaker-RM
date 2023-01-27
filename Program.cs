@@ -12,7 +12,7 @@ namespace QuizMaker_RM
             var quizList = new List<Quiz>();
 
             // our serializer to read/write material to our QuizSheet
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+            XmlSerializer serializer = new(typeof(List<Quiz>));
 
             var path = "../../../QuizSheet.xml";
 

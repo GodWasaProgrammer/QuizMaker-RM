@@ -20,7 +20,6 @@ namespace QuizMaker_RM
             {
                 quizList = serializer.Deserialize(file) as List<Quiz>;
             }
-
             return quizList;
         }
 
@@ -45,45 +44,18 @@ namespace QuizMaker_RM
 
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-
             int answerByIndex;
-            bool didItParse;
-            do
+
+            answerByIndex = UI.CheckIfAnswerIsInAnswers(quizList, currentquestion);
+
+            if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {
-                Console.WriteLine("Pick your answer by index");
-                int iterator = 0;
-                foreach (string answer in quizList[currentquestion].Answers)
-                {
-                    iterator++;
-                    Console.WriteLine($"{iterator} {answer.Trim(new char[] { '*' })}");
-                }
-
-                didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
-                answerByIndex--;
-                if (answerByIndex > 2)
-                {
-                    Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
-                }
-                if (didItParse == false)
-                {
-                    Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
-                }
-
+                Console.WriteLine("That is Correct!");
+                Program.currentScore += Program.AddPoints;
             }
-            while (answerByIndex > 2);
-
-            if (didItParse)
+            else
             {
-                if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
-                {
-                    Console.WriteLine("That is Correct!");
-                    Program.currentScore += Program.AddPoints;
-                }
-                else
-                {
-                    Console.WriteLine("That is not correct...");
-                }
-
+                Console.WriteLine("That is not correct...");
             }
 
         }

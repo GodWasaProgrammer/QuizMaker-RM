@@ -113,6 +113,32 @@
 
         }
 
+        public static int CheckIfAnswerIsInAnswers(List<Quiz> quizList, int currentquestion)
+        {
+            int answerByIndex;
+            bool didItParse;
+            do
+            {
+                Console.WriteLine("Pick your answer by index");
+
+                didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
+                answerByIndex--;
+                if (answerByIndex > 2)
+                {
+                    Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
+                }
+
+                if (didItParse == false)
+                {
+                    Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
+                }
+
+            }
+            while (answerByIndex > 2 || didItParse == false);
+
+            return answerByIndex;
+        }
+
         public static void PrintCurrentScore(int currentScore)
         {
             Console.WriteLine($"Your Current Score is:{currentScore}");
@@ -120,12 +146,11 @@
 
         public static void PrintOurFiveQuestions(List<Quiz> quizList)
         {
-            List<int> ourfivequestions = new List<int>();
+            List<int> ourfivequestions = new();
             ourfivequestions = GameLogic.PickFiveQuestions(quizList);
 
             foreach (int currentquestion in ourfivequestions)
             {
-                Quiz mirror = new Quiz();
                 int indexOfOurCorrectAnswerAsterisk = quizList[currentquestion].Answers.IndexOf("*");
 
                 Console.WriteLine(quizList[currentquestion].ToString());
