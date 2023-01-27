@@ -110,6 +110,7 @@
             {
                 Console.WriteLine(item);
             }
+
         }
 
         public static void PrintCurrentScore(int currentScore)
@@ -159,7 +160,9 @@
                         Console.WriteLine("Not an Option, try again!");
                         break;
                 }
+
             }
+
         }
     }
 }
