@@ -25,7 +25,6 @@ namespace QuizMaker_RM
             UI.Menu(quizList);
 
             GameLogic.WriteToXML(path, serializer, quizList);
-
         }
 
     }

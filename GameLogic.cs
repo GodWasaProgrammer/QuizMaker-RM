@@ -20,13 +20,14 @@ namespace QuizMaker_RM
             {
                 quizList = serializer.Deserialize(file) as List<Quiz>;
             }
+
             return quizList;
         }
 
         public static List<int> PickFiveQuestions(List<Quiz> quizList)
         {
-            Random OurRandom = new Random();
-            List<int> ourrandomquestions = new List<int>();
+            Random OurRandom = new();
+            List<int> ourrandomquestions = new();
 
             // decides how many questions we should be picking
             int counter = 5;
@@ -46,7 +47,7 @@ namespace QuizMaker_RM
         {
             int answerByIndex;
 
-            answerByIndex = UI.CheckIfAnswerIsInAnswers(quizList, currentquestion);
+            answerByIndex = UI.CheckIfAnswerIsInAnswers();
 
             if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {

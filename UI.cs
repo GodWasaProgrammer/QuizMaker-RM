@@ -26,10 +26,12 @@
                 }
                 while (newQuiz.quizQuestion == string.Empty);
 
-                List<string> oneTwoThree = new List<string>();
-                oneTwoThree.Add("First");
-                oneTwoThree.Add("Second");
-                oneTwoThree.Add("Third");
+                List<string> oneTwoThree = new()
+                {
+                    "First",
+                    "Second",
+                    "Third"
+                };
                 int iterator = -1;
                 do
                 {
@@ -113,7 +115,7 @@
 
         }
 
-        public static int CheckIfAnswerIsInAnswers(List<Quiz> quizList, int currentquestion)
+        public static int CheckIfAnswerIsInAnswers()
         {
             int answerByIndex;
             bool didItParse;
@@ -146,13 +148,10 @@
 
         public static void PrintOurFiveQuestions(List<Quiz> quizList)
         {
-            List<int> ourfivequestions = new();
-            ourfivequestions = GameLogic.PickFiveQuestions(quizList);
+            List<int> ourfivequestions = GameLogic.PickFiveQuestions(quizList);
 
             foreach (int currentquestion in ourfivequestions)
             {
-                int indexOfOurCorrectAnswerAsterisk = quizList[currentquestion].Answers.IndexOf("*");
-
                 Console.WriteLine(quizList[currentquestion].ToString());
 
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
