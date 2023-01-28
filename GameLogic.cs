@@ -45,9 +45,7 @@ namespace QuizMaker_RM
 
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            int answerByIndex;
-
-            answerByIndex = UI.CheckIfAnswerIsInAnswers();
+            int answerByIndex = UI.CheckIfAnswerIsInAnswers();
 
             if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {

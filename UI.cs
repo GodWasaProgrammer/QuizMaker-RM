@@ -64,7 +64,7 @@
                     }
                     Console.WriteLine("Enter Your Correct Answer by number:");
 
-                    Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
+                    _ = Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
                     correctAnswerByIndex--;
                     if (correctAnswerByIndex < 0 || correctAnswerByIndex > 2)
                     {
