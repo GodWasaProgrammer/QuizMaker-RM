@@ -4,19 +4,47 @@ namespace QuizMaker_RM
 {
     public static class GameLogic
     {
-        public static void WriteToXML(string path, XmlSerializer serializer, List<Quiz> quizList)
+        public const string PATH = "../../../QuizSheet.xml";
+        static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+        public static void WriteToXML(List<Quiz> quizList)
         {
             // writes our written quiz to our xml QuizSheet.xml
-            using (FileStream file = File.OpenWrite(path))
+            using (FileStream file = File.OpenWrite(PATH))
             {
                 serializer.Serialize(file, quizList);
             }
 
         }
 
-        public static List<Quiz> ReadFromXML(string path, XmlSerializer serializer, List<Quiz> quizList)
+        public static void MenuSelect(int choice, List<Quiz> quizList)
         {
-            using (FileStream file = File.OpenRead(path))
+            if (choice == 0)
+            {
+                UI.AddNewQuiz(quizList);
+            }
+
+            if (choice == 1)
+            {
+                UI.DoYouWishToPlay(quizList);
+            }
+
+            if (choice == 2)
+            {
+                UI.PrintOurQuizList(quizList);
+            }
+
+            if (choice == 3)
+            {
+                // writes our questions into the XML
+                WriteToXML(quizList);
+                // exits
+                Environment.Exit(0);
+            }
+        }
+
+        public static List<Quiz> ReadFromXML(List<Quiz> quizList)
+        {
+            using (FileStream file = File.OpenRead(PATH))
             {
                 quizList = serializer.Deserialize(file) as List<Quiz>;
             }
@@ -45,19 +73,31 @@ namespace QuizMaker_RM
 
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            int answerByIndex = UI.CheckIfAnswerIsInAnswers();
+            int answerByIndex = UI.ParseAnswer();
 
             if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {
-                Console.WriteLine("That is Correct!");
+                UI.ThatIsCorrectPrint();
                 Program.currentScore += Program.AddPoints;
             }
             else
             {
-                Console.WriteLine("That is not correct...");
+                UI.ThatisNotCorrectPrint();
             }
 
         }
 
+        public static void CheckIfParseSuccess(int answerByIndex, bool didItParse)
+        {
+            if (answerByIndex > 2)
+            {
+                UI.CanOnlyPickBetweenOneAndThreePrint();
+            }
+
+            if (didItParse == false)
+            {
+                UI.NotAbleToParsePrint();
+            }
+        }
     }
 }

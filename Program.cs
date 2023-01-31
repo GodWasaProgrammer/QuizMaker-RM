@@ -7,24 +7,32 @@ namespace QuizMaker_RM
         public static int currentScore = 0;
         public const int AddPoints = 1;
 
-        static void Main()
+        public static void Main()
         {
-            var quizList = new List<Quiz>();
+            List<Quiz> quizList = new List<Quiz>();
 
             // our serializer to read/write material to our QuizSheet
             XmlSerializer serializer = new(typeof(List<Quiz>));
 
-            var path = "../../../QuizSheet.xml";
-
             // repopulates our quizlist from quizsheet.xml on program start
-            quizList = GameLogic.ReadFromXML(path, serializer, quizList);
+            quizList = GameLogic.ReadFromXML(quizList);
 
             // Welcome message
             UI.WelcomeMessage();
 
-            UI.Menu(quizList);
+            do
+            {
+                // Menu Options
+                UI.MenuPrint();
 
-            GameLogic.WriteToXML(path, serializer, quizList);
+                // takes our input,parses it, returns a correct value
+                int choice = UI.TakeInput();
+
+                // puts that choice into MenuSelect
+                GameLogic.MenuSelect(choice, quizList);
+
+            } while (true);
+
         }
 
     }

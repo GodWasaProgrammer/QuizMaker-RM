@@ -5,11 +5,22 @@
         public string quizQuestion;
         public List<string> Answers = new List<string>();
 
-        public override string ToString()
+        public string PrintAnswerWithoutAsterisk()
         {
-            return $"{quizQuestion}\n 1. {Answers[0].Trim(new char[] { '*' })}, 2. {Answers[1].Trim(new char[] { '*' })}, 3. {Answers[2].Trim(new char[] { '*' })}";
+            Console.WriteLine(quizQuestion);
+            int iterator = 0;
+            foreach (string answer in Answers)
+            {
+                iterator++;
+                Console.Write($"{iterator}. {answer.Trim(new char[] { '*' })} ");
+            }
+            return null;
         }
 
+        public override string ToString()
+        {
+            return quizQuestion;
+        }
     }
 
 }

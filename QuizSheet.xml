@@ -40,4 +40,12 @@
       <string>Adam</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>who crossed the river</quizQuestion>
+    <Answers>
+      <string>johnny</string>
+      <string>adam</string>
+      <string>benny*</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>

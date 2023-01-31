@@ -115,25 +115,17 @@
 
         }
 
-        public static int CheckIfAnswerIsInAnswers()
+        public static int ParseAnswer()
         {
             int answerByIndex;
             bool didItParse;
             do
             {
-                Console.WriteLine("Pick your answer by index");
+                PickAnswerByIndexPrint();
 
                 didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
                 answerByIndex--;
-                if (answerByIndex > 2)
-                {
-                    Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
-                }
-
-                if (didItParse == false)
-                {
-                    Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
-                }
+                GameLogic.CheckIfParseSuccess(answerByIndex, didItParse);
 
             }
             while (answerByIndex > 2 || didItParse == false);
@@ -149,44 +141,70 @@
         public static void PrintOurFiveQuestions(List<Quiz> quizList)
         {
             List<int> ourfivequestions = GameLogic.PickFiveQuestions(quizList);
-
             foreach (int currentquestion in ourfivequestions)
             {
-                Console.WriteLine(quizList[currentquestion].ToString());
-
+                Console.WriteLine(quizList[currentquestion].PrintAnswerWithoutAsterisk());
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
 
                 UI.PrintCurrentScore(Program.currentScore);
             }
 
         }
-
-        public static void Menu(List<Quiz> quizList)
+        public static int TakeInput()
         {
-            while (true)
+            bool didItParse;
+            int choice;
+            do
             {
-                Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
-                switch (Console.ReadLine())
+                didItParse = int.TryParse(Console.ReadLine(), out choice);
+                choice--;
+
+                if (choice > 3)
                 {
-                    case "1":
-                        UI.AddNewQuiz(quizList);
-                        break;
-                    case "2":
-                        UI.DoYouWishToPlay(quizList);
-                        break;
-                    case "3":
-                        UI.PrintOurQuizList(quizList);
-                        break;
-                    case "4":
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Not an Option, try again!");
-                        break;
+                    Console.WriteLine("Incorrect Choice");
+                    didItParse = false;
                 }
 
-            }
+                if (didItParse == false)
+                {
+                    Console.WriteLine("Could not Parse your input.");
+                }
+
+            } while (didItParse == false);
+
+            return choice;
 
         }
+
+        public static void MenuPrint()
+        {
+            Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
+        }
+
+        public static void NotAbleToParsePrint()
+        {
+            Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
+        }
+
+        public static void CanOnlyPickBetweenOneAndThreePrint()
+        {
+            Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
+        }
+
+        public static void PickAnswerByIndexPrint()
+        {
+            Console.WriteLine("Pick your answer by index");
+        }
+
+        public static void ThatIsCorrectPrint()
+        {
+            Console.WriteLine("That is Correct!");
+        }
+
+        public static void ThatisNotCorrectPrint()
+        {
+            Console.WriteLine("That is not correct...");
+        }
+
     }
 }
