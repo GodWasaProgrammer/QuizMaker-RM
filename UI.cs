@@ -11,9 +11,11 @@
         public static void AddNewQuiz(List<Quiz> quizList)
         {
             Quiz newQuiz = new();
-
+            /// here to control how many answers we want for our questions
+            int amountOfAnswers;
             do
             {
+
                 do
                 {
                     Console.WriteLine("Enter Your Quiz-Question:");
@@ -27,15 +29,39 @@
                 }
                 while (newQuiz.quizQuestion == string.Empty);
 
+                do
+                {
+                    Console.WriteLine("Input your amount of answers");
+                    bool didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
+
+                    if (amountOfAnswers < 2)
+                    {
+                        if (didItParse == false)
+                        {
+                            Console.WriteLine("You have to put 2 or more answers for a question.");
+                        }
+
+                    }
+
+                    if (didItParse == false)
+                    {
+                        Console.WriteLine("Cant parse. try again");
+                    }
+                }
+                while (amountOfAnswers < GameLogic.MINANSWERS && amountOfAnswers < GameLogic.MAXANSWERS);
+
                 List<string> oneTwoThree = new()
                 {
                     "First",
                     "Second",
-                    "Third"
+                    "Third",
+                    "Fourth",
+                    "Fifth"
                 };
 
                 int iterator = -1;
 
+                // registers our inputs
                 do
                 {
                     iterator++;
@@ -54,7 +80,7 @@
                     }
 
                 }
-                while (newQuiz.Answers.Count < 3);
+                while (newQuiz.Answers.Count < amountOfAnswers);
 
                 int correctAnswerByIndex;
                 do
@@ -66,12 +92,32 @@
                         Console.WriteLine($"{iterator}.{item}");
                     }
 
-                    Console.WriteLine("Enter Your Correct Answer by number:");
+                    bool isParsable;
+                    do
+                    {
+                        Console.WriteLine("Enter Your Correct Answer by number:");
+                        isParsable = Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
 
-                    _ = Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
+                        if (isParsable == false)
+                        {
+                            Console.WriteLine("Could not parse, try again");
+                        }
+                        else
+                        {
+                            if (correctAnswerByIndex < 1 || correctAnswerByIndex > GameLogic.MAXANSWERS)
+                            {
+                                Console.WriteLine("This answer is not acceptable,your input should be between 1 and 5");
+                                isParsable = false;
+                            }
+
+                        }
+
+                    }
+                    while (isParsable == false);
+
                     correctAnswerByIndex--;
 
-                    if (correctAnswerByIndex < 0 || correctAnswerByIndex > 2)
+                    if (correctAnswerByIndex < 0 || correctAnswerByIndex > GameLogic.MAXANSWERS)
                     {
                         Console.WriteLine("You need to input a valid indexposition");
                     }
@@ -174,7 +220,7 @@
                     didItParse = false;
                 }
 
-            } 
+            }
             while (didItParse == false);
 
             return choice;

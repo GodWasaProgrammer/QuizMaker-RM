@@ -7,7 +7,9 @@ namespace QuizMaker_RM
         public const string PATH = "../../../QuizSheet.xml";
         static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
         public static int currentScore = 0;
-        public const int AddPoints = 1;
+        public const int ADDPOINTS = 1;
+        public const int MAXANSWERS = 5;
+        public const int MINANSWERS = 2;
         public static void WriteToXML(List<Quiz> quizList)
         {
             // writes our written quiz to our xml QuizSheet.xml
@@ -54,7 +56,7 @@ namespace QuizMaker_RM
             if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {
                 UI.ThatIsCorrectPrint();
-                currentScore += AddPoints;
+                currentScore += ADDPOINTS;
             }
             else
             {

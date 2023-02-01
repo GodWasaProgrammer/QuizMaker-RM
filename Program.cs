@@ -48,9 +48,8 @@ namespace QuizMaker_RM
                     // exits
                     Environment.Exit(0);
                 }
-                
 
-            } 
+            }
             while (true);
 
         }

@@ -20,7 +20,7 @@
 
         public override string ToString()
         {
-            return $"{quizQuestion}, {PrintAnswerWithoutAsterisk()}";
+            return $"{PrintAnswerWithoutAsterisk()}";
         }
     }
 
