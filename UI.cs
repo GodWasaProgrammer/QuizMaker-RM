@@ -23,6 +23,7 @@
                     {
                         Console.WriteLine("You have to type a question.");
                     }
+
                 }
                 while (newQuiz.quizQuestion == string.Empty);
 
@@ -86,7 +87,6 @@
 
                 Console.WriteLine("Do you want to add more? if so press y");
             }
-
             while (Console.ReadLine().ToLower() == "y");
 
         }
@@ -174,7 +174,8 @@
                     didItParse = false;
                 }
 
-            } while (didItParse == false);
+            } 
+            while (didItParse == false);
 
             return choice;
 

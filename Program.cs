@@ -50,7 +50,8 @@ namespace QuizMaker_RM
                 }
                 
 
-            } while (true);
+            } 
+            while (true);
 
         }
 
