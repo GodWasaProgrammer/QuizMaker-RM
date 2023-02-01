@@ -6,6 +6,8 @@ namespace QuizMaker_RM
     {
         public const string PATH = "../../../QuizSheet.xml";
         static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+        public static int currentScore = 0;
+        public const int AddPoints = 1;
         public static void WriteToXML(List<Quiz> quizList)
         {
             // writes our written quiz to our xml QuizSheet.xml
@@ -14,32 +16,6 @@ namespace QuizMaker_RM
                 serializer.Serialize(file, quizList);
             }
 
-        }
-
-        public static void MenuSelect(int choice, List<Quiz> quizList)
-        {
-            if (choice == 0)
-            {
-                UI.AddNewQuiz(quizList);
-            }
-
-            if (choice == 1)
-            {
-                UI.DoYouWishToPlay(quizList);
-            }
-
-            if (choice == 2)
-            {
-                UI.PrintOurQuizList(quizList);
-            }
-
-            if (choice == 3)
-            {
-                // writes our questions into the XML
-                WriteToXML(quizList);
-                // exits
-                Environment.Exit(0);
-            }
         }
 
         public static List<Quiz> ReadFromXML(List<Quiz> quizList)
@@ -78,7 +54,7 @@ namespace QuizMaker_RM
             if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
             {
                 UI.ThatIsCorrectPrint();
-                Program.currentScore += Program.AddPoints;
+                currentScore += AddPoints;
             }
             else
             {

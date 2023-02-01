@@ -32,7 +32,9 @@
                     "Second",
                     "Third"
                 };
+
                 int iterator = -1;
+
                 do
                 {
                     iterator++;
@@ -62,10 +64,12 @@
                         iterator++;
                         Console.WriteLine($"{iterator}.{item}");
                     }
+
                     Console.WriteLine("Enter Your Correct Answer by number:");
 
                     _ = Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
                     correctAnswerByIndex--;
+
                     if (correctAnswerByIndex < 0 || correctAnswerByIndex > 2)
                     {
                         Console.WriteLine("You need to input a valid indexposition");
@@ -146,7 +150,7 @@
                 Console.WriteLine(quizList[currentquestion].PrintAnswerWithoutAsterisk());
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
 
-                UI.PrintCurrentScore(Program.currentScore);
+                PrintCurrentScore(GameLogic.currentScore);
             }
 
         }
@@ -159,15 +163,15 @@
                 didItParse = int.TryParse(Console.ReadLine(), out choice);
                 choice--;
 
+                if (didItParse == false)
+                {
+                    Console.WriteLine("Could not Parse your input.");
+                }
+
                 if (choice > 3)
                 {
                     Console.WriteLine("Incorrect Choice");
                     didItParse = false;
-                }
-
-                if (didItParse == false)
-                {
-                    Console.WriteLine("Could not Parse your input.");
                 }
 
             } while (didItParse == false);

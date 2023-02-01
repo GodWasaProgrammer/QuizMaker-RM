@@ -14,12 +14,13 @@
                 iterator++;
                 Console.Write($"{iterator}. {answer.Trim(new char[] { '*' })} ");
             }
-            return null;
+
+            return "";
         }
 
         public override string ToString()
         {
-            return quizQuestion;
+            return $"{quizQuestion}, {PrintAnswerWithoutAsterisk()}";
         }
     }
 

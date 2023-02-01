@@ -4,8 +4,6 @@ namespace QuizMaker_RM
 {
     public class Program
     {
-        public static int currentScore = 0;
-        public const int AddPoints = 1;
 
         public static void Main()
         {
@@ -28,8 +26,29 @@ namespace QuizMaker_RM
                 // takes our input,parses it, returns a correct value
                 int choice = UI.TakeInput();
 
-                // puts that choice into MenuSelect
-                GameLogic.MenuSelect(choice, quizList);
+                if (choice == 0)
+                {
+                    UI.AddNewQuiz(quizList);
+                }
+
+                if (choice == 1)
+                {
+                    UI.DoYouWishToPlay(quizList);
+                }
+
+                if (choice == 2)
+                {
+                    UI.PrintOurQuizList(quizList);
+                }
+
+                if (choice == 3)
+                {
+                    // writes our questions into the XML
+                    GameLogic.WriteToXML(quizList);
+                    // exits
+                    Environment.Exit(0);
+                }
+                
 
             } while (true);
 
