@@ -66,7 +66,6 @@
                 {
                     iterator++;
                     Console.WriteLine($"Enter Your {oneTwoThree[iterator]} Answer");
-
                     string input = Console.ReadLine();
 
                     if (input == string.Empty || input == null)
@@ -82,7 +81,8 @@
                 }
                 while (newQuiz.Answers.Count < amountOfAnswers);
 
-                int correctAnswerByIndex;
+                int correctAnswerByIndex = 0;
+                List<int> splitInts = new();
                 do
                 {
                     iterator = 0;
@@ -92,22 +92,38 @@
                         Console.WriteLine($"{iterator}.{item}");
                     }
 
-                    bool isParsable;
+                    bool isParsable = false;
                     do
                     {
-                        Console.WriteLine("Enter Your Correct Answer by number:");
-                        isParsable = Int32.TryParse(Console.ReadLine(), out correctAnswerByIndex);
+                        string[] answerArray;
+                        do
+                        {
+                            Console.WriteLine("Enter Your Correct Answer by number:");
+                            Console.WriteLine("If multiple choices are correct, just input them like this: 1,2,3,4,5");
 
-                        if (isParsable == false)
-                        {
-                            Console.WriteLine("Could not parse, try again");
-                        }
-                        else
-                        {
-                            if (correctAnswerByIndex < 1 || correctAnswerByIndex > GameLogic.MAXANSWERS)
+                            string stringToSplit = Console.ReadLine();
+
+                            answerArray = stringToSplit.Split(",");
+
+                            if (answerArray.Count() > GameLogic.MAXANSWERS)
                             {
-                                Console.WriteLine("This answer is not acceptable,your input should be between 1 and 5");
-                                isParsable = false;
+                                Console.WriteLine("Too many inputs, try again");
+                            }
+
+                        } 
+                        while (answerArray.Count() > GameLogic.MAXANSWERS);
+
+                        int splittedStringToIntToList;
+                        foreach (string answer in answerArray)
+                        {
+                            isParsable = int.TryParse(answer, out splittedStringToIntToList);
+                            if (isParsable)
+                            {
+                                splitInts.Add(splittedStringToIntToList);
+                            }
+                            else
+                            {
+                                Console.WriteLine("one of your input wasnt parsable.");
                             }
 
                         }
@@ -115,16 +131,14 @@
                     }
                     while (isParsable == false);
 
-                    correctAnswerByIndex--;
+                    for (int i = 0; i < splitInts.Count; i++)
+                    {
+                        var IndexOfANswer = splitInts[i];
+                        IndexOfANswer--;
+                            newQuiz.Answers[IndexOfANswer] += "*";
 
-                    if (correctAnswerByIndex < 0 || correctAnswerByIndex > GameLogic.MAXANSWERS)
-                    {
-                        Console.WriteLine("You need to input a valid indexposition");
                     }
-                    else
-                    {
-                        newQuiz.Answers[correctAnswerByIndex] = newQuiz.Answers[correctAnswerByIndex] + "*";
-                    }
+                    
 
                 }
                 while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
@@ -160,7 +174,7 @@
             // Prints what quizzes we have so far
             foreach (var item in quizList)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.ToString());
             }
 
         }

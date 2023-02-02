@@ -8,19 +8,6 @@ namespace QuizMaker_RM
         public string quizQuestion;
         public List<string> Answers = new List<string>();
 
-        //public string PrintAnswerWithoutAsterisk()
-        //{
-        //    Console.WriteLine(quizQuestion);
-        //    int iterator = 0;
-        //    foreach (string answer in Answers)
-        //    {
-        //        iterator++;
-        //        Console.Write($"{iterator}. {answer.Trim(new char[] { '*' })} ");
-        //    }
-
-        //    return "";
-        //}
-
         public override string ToString()
         {
             char[] asterisk = { '*' };
@@ -32,7 +19,6 @@ namespace QuizMaker_RM
                 int indexPositionOfanswer = Answers.IndexOf(answer);
                 indexPositionOfanswer++;
                 joinedStrings += indexPositionOfanswer + ". " + trimmedString + ",";
-
             }
             
             return $"{quizQuestion} Answers:{joinedStrings}";

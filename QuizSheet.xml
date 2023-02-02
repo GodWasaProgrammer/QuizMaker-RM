@@ -48,4 +48,12 @@
       <string>benny*</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>aefaef</quizQuestion>
+    <Answers>
+      <string>aef*</string>
+      <string>aefaef*</string>
+      <string>aefaefaef*</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>
