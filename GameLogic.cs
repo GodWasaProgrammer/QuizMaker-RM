@@ -51,16 +51,24 @@ namespace QuizMaker_RM
 
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            int answerByIndex = UI.ParseAnswer();
+            List<int> answersByIndex = UI.ParseAnswer();
 
-            if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
+            for (int i = 0; i < answersByIndex.Count; i++)
             {
-                UI.ThatIsCorrectPrint();
-                currentScore += ADDPOINTS;
-            }
-            else
-            {
-                UI.ThatisNotCorrectPrint();
+
+                int answerByIndex = answersByIndex[i];
+                answerByIndex--;
+
+                if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
+                {
+                    UI.ThatIsCorrectPrint();
+                    currentScore += ADDPOINTS;
+                }
+                else
+                {
+                    UI.ThatisNotCorrectPrint();
+                }
+
             }
 
         }

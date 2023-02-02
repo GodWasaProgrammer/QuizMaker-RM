@@ -1,4 +1,6 @@
-﻿namespace QuizMaker_RM
+﻿using System.Net.NetworkInformation;
+
+namespace QuizMaker_RM
 {
     public class UI
     {
@@ -110,7 +112,7 @@
                                 Console.WriteLine("Too many inputs, try again");
                             }
 
-                        } 
+                        }
                         while (answerArray.Count() > GameLogic.MAXANSWERS);
 
                         int splittedStringToIntToList;
@@ -135,10 +137,10 @@
                     {
                         var IndexOfANswer = splitInts[i];
                         IndexOfANswer--;
-                            newQuiz.Answers[IndexOfANswer] += "*";
+                        newQuiz.Answers[IndexOfANswer] += "*";
 
                     }
-                    
+
 
                 }
                 while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
@@ -179,22 +181,23 @@
 
         }
 
-        public static int ParseAnswer()
+        public static List<int> ParseAnswer()
         {
-            int answerByIndex;
-            bool didItParse;
-            do
-            {
-                PickAnswerByIndexPrint();
+            List<int> answersByIndex = new();
 
-                didItParse = Int32.TryParse(Console.ReadLine(), out answerByIndex);
-                answerByIndex--;
-                GameLogic.CheckIfParseSuccess(answerByIndex, didItParse);
+            PickAnswerByIndexPrint();
+
+            string multichoiceAnswer = Console.ReadLine();
+            string[] stringArray;
+            stringArray = multichoiceAnswer.Split(",");
+
+            foreach (string answerIndex in stringArray)
+            {
+                answersByIndex.Add(int.Parse(answerIndex));
 
             }
-            while (answerByIndex > 2 || didItParse == false);
 
-            return answerByIndex;
+            return answersByIndex;
         }
 
         public static void PrintCurrentScore(int currentScore)
