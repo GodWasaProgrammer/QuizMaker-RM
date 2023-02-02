@@ -53,7 +53,7 @@ namespace QuizMaker_RM
         {
             int answerByIndex = UI.ParseAnswer();
 
-            if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
+            if (quizList[currentquestion].answers[answerByIndex].Contains('*'))
             {
                 UI.ThatIsCorrectPrint();
                 currentScore += ADDPOINTS;

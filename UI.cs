@@ -193,7 +193,7 @@
             List<int> ourfivequestions = GameLogic.PickFiveQuestions(quizList);
             foreach (int currentquestion in ourfivequestions)
             {
-                Console.WriteLine(quizList[currentquestion].PrintAnswerWithoutAsterisk());
+                Console.WriteLine(quizList[currentquestion].ToString());
                 GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
 
                 PrintCurrentScore(GameLogic.currentScore);
