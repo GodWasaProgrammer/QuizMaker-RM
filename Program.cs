@@ -4,7 +4,6 @@ namespace QuizMaker_RM
 {
     public class Program
     {
-
         public static void Main()
         {
             List<Quiz> quizList = new List<Quiz>();

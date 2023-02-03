@@ -94,6 +94,7 @@ namespace QuizMaker_RM
             {
                 UI.PrintStringEmpty();
             }
+
         }
 
         public static List<int> ParseAnswer()
@@ -123,6 +124,7 @@ namespace QuizMaker_RM
                 IndexOfANswer--;
                 newQuiz.Answers[IndexOfANswer] += "*";
             }
+
         }
 
         public static void InputWrapper(Quiz newQuiz, int amountOfAnswers)
@@ -148,6 +150,7 @@ namespace QuizMaker_RM
 
             }
             while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
+
         }
 
         public static bool WriteSplitIntsToAnswers(List<int> splitInts, bool isParsable, string[] answerArray)
