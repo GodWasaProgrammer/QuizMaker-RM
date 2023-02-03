@@ -81,14 +81,17 @@
             while (answerArray.Count() > GameLogic.MAXANSWERS);
             return answerArray;
         }
-
+        
         public static void HandleAndAddAnswers(Quiz newQuiz, int amountOfAnswers)
         {
+            int numberOfSuffixToPrint = 0;
             do
             {
-                int numberOfSuffixToPrint = 0;
-                numberOfSuffixToPrint++;
+                
                 Console.WriteLine($"Enter Your {listOfSuffixForPrint[numberOfSuffixToPrint]} Answer");
+
+                numberOfSuffixToPrint++;
+
                 string input = Console.ReadLine();
 
                 if (input == string.Empty || input == null)
