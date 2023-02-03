@@ -28,7 +28,7 @@ namespace QuizMaker_RM
 
                 if (choice == 0)
                 {
-                    UI.AddNewQuiz(quizList);
+                    quizList.Add(UI.AddNewQuiz());
                 }
 
                 if (choice == 1)

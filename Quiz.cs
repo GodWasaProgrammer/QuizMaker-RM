@@ -13,14 +13,6 @@ namespace QuizMaker_RM
             char[] asterisk = { '*' };
             string joinedStrings = "";
             
-            //foreach (string answer in Answers)
-            //{
-            //    string trimmedString = answer.Trim(asterisk);
-            //    int indexPositionOfanswer = Answers.IndexOf(answer);
-            //    indexPositionOfanswer++;
-            //    joinedStrings += indexPositionOfanswer + ". " + trimmedString + ",";
-            //}
-            
             for (int answersIndex = 0; answersIndex < Answers.Count(); answersIndex++)
             {
                 string trimmedString = Answers[answersIndex].Trim(asterisk);

@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Xml.Serialization;
 
 namespace QuizMaker_RM
 {
@@ -51,7 +52,7 @@ namespace QuizMaker_RM
 
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
-            List<int> answersByIndex = UI.ParseAnswer();
+            List<int> answersByIndex = GameLogic.ParseAnswer();
 
             for (int i = 0; i < answersByIndex.Count; i++)
             {
@@ -85,6 +86,89 @@ namespace QuizMaker_RM
                 UI.NotAbleToParsePrint();
             }
 
+        }
+
+        public static void CheckIfQuestionStringIsEmpty(Quiz newQuiz)
+        {
+            if (newQuiz.quizQuestion == string.Empty)
+            {
+                UI.PrintStringEmpty();
+            }
+        }
+
+        public static List<int> ParseAnswer()
+        {
+            List<int> answersByIndex = new();
+
+            UI.PickAnswerByIndexPrint();
+
+            string multichoiceAnswer = Console.ReadLine();
+            string[] stringArray;
+            stringArray = multichoiceAnswer.Split(",");
+
+            foreach (string answerIndex in stringArray)
+            {
+                answersByIndex.Add(int.Parse(answerIndex));
+
+            }
+
+            return answersByIndex;
+        }
+
+        public static void AddAsterisksToAnswers(Quiz newQuiz, List<int> splitInts)
+        {
+            for (int i = 0; i < splitInts.Count; i++)
+            {
+                var IndexOfANswer = splitInts[i];
+                IndexOfANswer--;
+                newQuiz.Answers[IndexOfANswer] += "*";
+            }
+        }
+
+        public static void InputWrapper(Quiz newQuiz, int amountOfAnswers)
+        {
+            // registers our inputs
+            UI.HandleAndAddAnswers(newQuiz, amountOfAnswers);
+
+            int correctAnswerByIndex = 0;
+            List<int> splitInts = new();
+            do
+            {
+                UI.PrintAnswers(newQuiz);
+
+                bool isParsable = false;
+                do
+                {
+                    string[] answerArray = UI.SplitAnswers();
+                    isParsable = WriteSplitIntsToAnswers(splitInts, isParsable, answerArray);
+                }
+                while (isParsable == false);
+
+                AddAsterisksToAnswers(newQuiz, splitInts);
+
+            }
+            while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
+        }
+
+        public static bool WriteSplitIntsToAnswers(List<int> splitInts, bool isParsable, string[] answerArray)
+        {
+            int splittedStringToIntToList;
+            foreach (string answer in answerArray)
+            {
+                isParsable = int.TryParse(answer, out splittedStringToIntToList);
+
+                if (isParsable)
+                {
+                    splitInts.Add(splittedStringToIntToList);
+                }
+                else
+                {
+                    UI.InputWasntParsable();
+                }
+
+            }
+
+            return isParsable;
         }
     }
 }
