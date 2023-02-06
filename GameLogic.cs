@@ -31,25 +31,6 @@ namespace QuizMaker_RM
             return quizList;
         }
 
-        public static List<int> PickFiveQuestions(List<Quiz> quizList)
-        {
-            Random OurRandom = new();
-            List<int> ourrandomquestions = new();
-
-            // decides how many questions we should be picking
-            int counter = 5;
-
-            // make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
-            do
-            {
-                counter--;
-                ourrandomquestions.Add(OurRandom.Next(quizList.Count));
-            }
-            while (counter > 0);
-
-            return ourrandomquestions;
-        }
-
         public static void CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
         {
             List<int> answersByIndex = GameLogic.ParseAnswer();
@@ -88,15 +69,6 @@ namespace QuizMaker_RM
 
         }
 
-        public static void CheckIfQuestionStringIsEmpty(Quiz newQuiz)
-        {
-            if (newQuiz.quizQuestion == string.Empty)
-            {
-                UI.PrintStringEmpty();
-            }
-
-        }
-
         public static List<int> ParseAnswer()
         {
             List<int> answersByIndex = new();
@@ -110,51 +82,14 @@ namespace QuizMaker_RM
             foreach (string answerIndex in stringArray)
             {
                 answersByIndex.Add(int.Parse(answerIndex));
-
             }
 
             return answersByIndex;
         }
 
-        public static void AddAsterisksToAnswers(Quiz newQuiz, List<int> splitInts)
+        public static bool WriteSplitIntsToAnswers(List<int> splitInts, string[] answerArray)
         {
-            for (int i = 0; i < splitInts.Count; i++)
-            {
-                var IndexOfANswer = splitInts[i];
-                IndexOfANswer--;
-                newQuiz.Answers[IndexOfANswer] += "*";
-            }
-
-        }
-
-        public static void InputWrapper(Quiz newQuiz, int amountOfAnswers)
-        {
-            // registers our inputs
-            UI.HandleAndAddAnswers(newQuiz, amountOfAnswers);
-
-            int correctAnswerByIndex = 0;
-            List<int> splitInts = new();
-            do
-            {
-                UI.PrintAnswers(newQuiz);
-
-                bool isParsable = false;
-                do
-                {
-                    string[] answerArray = UI.SplitAnswers();
-                    isParsable = WriteSplitIntsToAnswers(splitInts, isParsable, answerArray);
-                }
-                while (isParsable == false);
-
-                AddAsterisksToAnswers(newQuiz, splitInts);
-
-            }
-            while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
-
-        }
-
-        public static bool WriteSplitIntsToAnswers(List<int> splitInts, bool isParsable, string[] answerArray)
-        {
+            bool isParsable = false;
             int splittedStringToIntToList;
             foreach (string answer in answerArray)
             {

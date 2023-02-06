@@ -27,12 +27,38 @@ namespace QuizMaker_RM
 
                 if (choice == 0)
                 {
-                    quizList.Add(UI.AddNewQuiz());
+                    Quiz newQuiz = UI.AddNewQuiz();
+                    UI.AddCorrectAnswer(newQuiz);
+                    quizList.Add(newQuiz);
                 }
 
                 if (choice == 1)
                 {
-                    UI.DoYouWishToPlay(quizList);
+                    //UI.PlayQuiz(quizList);
+                    Console.WriteLine("Each Correct guess is worth 1 point");
+
+                    Random OurRandom = new();
+                    List<int> ourrandomquestions = new();
+
+                    // decides how many questions we should be picking
+                    int counter = 5;
+
+                    // make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
+                    do
+                    {
+                        counter--;
+                        ourrandomquestions.Add(OurRandom.Next(quizList.Count));
+                    }
+                    while (counter > 0);
+
+                    foreach (int currentquestion in ourrandomquestions)
+                    {
+                        Console.WriteLine(quizList[currentquestion].ToString());
+                        GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
+
+                        UI.PrintCurrentScore(GameLogic.currentScore);
+                    }
+
                 }
 
                 if (choice == 2)

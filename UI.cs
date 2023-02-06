@@ -21,73 +21,47 @@
         {
             Quiz newQuiz = new();
 
-            int amountOfAnswers;
-
-            // takes our question
-            TakeNewQuestion(newQuiz);
-
-            amountOfAnswers = AboveMinAnswersAndBelowMaxAnswers();
-
-            GameLogic.InputWrapper(newQuiz, amountOfAnswers);
-
-            return newQuiz;
-        }
-
-        private static int AboveMinAnswersAndBelowMaxAnswers()
-        {
-            int amountOfAnswers;
-            do
-            {    // checks so our amount of answers is acceptable (< 4)
-                bool didItParse;
-                AmountOfAnswersAbove2Check(out amountOfAnswers, out didItParse);
-
-                if (didItParse == false)
-                {
-                    Console.WriteLine("Cant parse. try again");
-                }
-            }
-            while (amountOfAnswers < GameLogic.MINANSWERS && amountOfAnswers < GameLogic.MAXANSWERS);
-            return amountOfAnswers;
-        }
-
-        public static void PrintAnswers(Quiz newQuiz)
-        {
-            for (int answers = 0; answers < newQuiz.Answers.Count(); answers++)
-            {
-                int indexToPrintForList = answers + 1;
-                Console.WriteLine($"{indexToPrintForList}. {newQuiz.Answers[answers]}");
-            }
-
-        }
-
-        public static string[] SplitAnswers()
-        {
-            string[] answerArray;
             do
             {
-                Console.WriteLine("Enter Your Correct Answer by number:");
-                Console.WriteLine("If multiple choices are correct, just input them like this: 1,2,3,4,5");
+                Console.WriteLine("Enter Your Quiz-Question:");
+                newQuiz.quizQuestion = Console.ReadLine();
 
-                string stringToSplit = Console.ReadLine();
-
-                answerArray = stringToSplit.Split(",");
-
-                if (answerArray.Count() > GameLogic.MAXANSWERS)
+                if (newQuiz.quizQuestion == string.Empty)
                 {
-                    Console.WriteLine("Too many inputs, try again");
+                    Console.WriteLine("You have to type a question.");
                 }
 
             }
-            while (answerArray.Count() > GameLogic.MAXANSWERS);
-            return answerArray;
-        }
-        
-        public static void HandleAndAddAnswers(Quiz newQuiz, int amountOfAnswers)
-        {
+            while (newQuiz.quizQuestion == string.Empty);
+
+            int amountOfAnswers;
+            bool didItParse;
+            do
+            {    // checks so our amount of answers is acceptable (< 5)
+                 // bool didItParse;
+
+                Console.WriteLine("Input your amount of answers");
+                didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
+                if (amountOfAnswers < GameLogic.MINANSWERS)
+                {
+                    didItParse = false;
+                    Console.WriteLine($"You have to put {GameLogic.MINANSWERS} or more answers for a question");
+                }
+
+                if (amountOfAnswers > GameLogic.MAXANSWERS)
+                {
+                    didItParse = false;
+                    Console.WriteLine($"Too many answers. needs to be less then {GameLogic.MAXANSWERS}");
+                }
+
+            }
+            while (didItParse == false);
+
+            //// registers our inputs
+            ///
             int numberOfSuffixToPrint = 0;
             do
             {
-                
                 Console.WriteLine($"Enter Your {listOfSuffixForPrint[numberOfSuffixToPrint]} Answer");
 
                 numberOfSuffixToPrint++;
@@ -107,42 +81,91 @@
             }
             while (newQuiz.Answers.Count < amountOfAnswers);
 
+            return newQuiz;
         }
 
-        private static void AmountOfAnswersAbove2Check(out int amountOfAnswers, out bool didItParse)
+        public static void AddCorrectAnswer(Quiz newQuiz)
         {
-            Console.WriteLine("Input your amount of answers");
-            didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
-            if (amountOfAnswers < 2)
+            int correctAnswerByIndex = 0;
+            List<int> splitInts = new();
+            do
             {
-                if (didItParse == false)
+                UI.PrintAnswers(newQuiz);
+
+                string[] answerArray = UI.SplitAnswers();
+                GameLogic.WriteSplitIntsToAnswers(splitInts, answerArray);
+
+                for (int i = 0; i < splitInts.Count; i++)
                 {
-                    Console.WriteLine("You have to put 2 or more answers for a question.");
+                    var IndexOfANswer = splitInts[i];
+                    IndexOfANswer--;
+                    newQuiz.Answers[IndexOfANswer] += "*";
                 }
 
             }
+            while (!newQuiz.Answers[correctAnswerByIndex].Contains('*'));
+        }
+
+        public static void PrintAnswers(Quiz newQuiz)
+        {
+            for (int answers = 0; answers < newQuiz.Answers.Count(); answers++)
+            {
+                int indexToPrintForList = answers + 1;
+                Console.WriteLine($"{indexToPrintForList}. {newQuiz.Answers[answers]}");
+            }
 
         }
 
-        private static void TakeNewQuestion(Quiz newQuiz)
+        public static string[] SplitAnswers()
         {
+            string[] answerArray;
             do
             {
-                Console.WriteLine("Enter Your Quiz-Question:");
-                newQuiz.quizQuestion = Console.ReadLine();
-                GameLogic.CheckIfQuestionStringIsEmpty(newQuiz);
+                Console.WriteLine("Enter Your Correct Answer by number:");
+                Console.WriteLine("If multiple choices are correct, just input them like this: 1,2,3,4,5");
+                string stringToSplit;
+
+
+                answerArray = stringToSplit.Split(",");
+
+                if (answerArray.Count() > GameLogic.MAXANSWERS)
+                {
+                    Console.WriteLine("Too many inputs, try again");
+                }
 
             }
-            while (newQuiz.quizQuestion == string.Empty);
+            while (answerArray.Count() > GameLogic.MAXANSWERS);
+
+            return answerArray;
         }
 
-        public static void DoYouWishToPlay(List<Quiz> quizList)
-        {
-            Console.WriteLine("Each Correct guess is worth 1 point");
-            Console.WriteLine("enter y to play");
+        //public static void PlayQuiz(List<Quiz> quizList)
+        //{
+        //    Console.WriteLine("Each Correct guess is worth 1 point");
 
-            PrintOurFiveQuestions(quizList);
-        }
+        //    Random OurRandom = new();
+        //    List<int> ourrandomquestions = new();
+
+        //    // decides how many questions we should be picking
+        //    int counter = 5;
+
+        //    // make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
+        //    do
+        //    {
+        //        counter--;
+        //        ourrandomquestions.Add(OurRandom.Next(quizList.Count));
+        //    }
+        //    while (counter > 0);
+
+        //    foreach (int currentquestion in ourrandomquestions)
+        //    {
+        //        Console.WriteLine(quizList[currentquestion].ToString());
+        //        GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
+
+        //        PrintCurrentScore(GameLogic.currentScore);
+        //    }
+
+        //}
 
         public static void PrintOurQuizList(List<Quiz> quizList)
         {
@@ -159,18 +182,6 @@
             Console.WriteLine($"Your Current Score is:{currentScore}");
         }
 
-        public static void PrintOurFiveQuestions(List<Quiz> quizList)
-        {
-            List<int> ourfivequestions = GameLogic.PickFiveQuestions(quizList);
-            foreach (int currentquestion in ourfivequestions)
-            {
-                Console.WriteLine(quizList[currentquestion].ToString());
-                GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
-
-                PrintCurrentScore(GameLogic.currentScore);
-            }
-
-        }
         public static int TakeInput()
         {
             bool didItParse;
@@ -233,9 +244,5 @@
             Console.WriteLine("one of your input wasnt parsable.");
         }
 
-        public static void PrintStringEmpty()
-        {
-            Console.WriteLine("You have to type a question.");
-        }
     }
 }
