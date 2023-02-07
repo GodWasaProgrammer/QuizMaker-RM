@@ -24,14 +24,14 @@ namespace QuizMaker_RM
 
 				if (choice == 0) // new quiz
 				{
-					Quiz newQuiz = UI.AddNewQuiz(GameLogic.MINANSWERS,GameLogic.MAXANSWERS);
-					UI.AddCorrectAnswer(newQuiz, GameLogic.MAXANSWERS);
+					Quiz newQuiz = UI.AddNewQuiz();
+					UI.AddCorrectAnswer(newQuiz);
 					quizList.Add(newQuiz);
 				}
 
-				if (choice == 1) // play quiz
+				else if (choice == 1) // play quiz
 				{
-					UI.OnePoint();
+					UI.OnePointPrint();
 
 					List<int> ourrandomquestions = new();
 
@@ -44,7 +44,7 @@ namespace QuizMaker_RM
 						Random OurRandom = new();
 
 						int ourIntForList = OurRandom.Next(quizList.Count);
-
+						// if randomed int isnt in the list already, do this
 						if (!ourrandomquestions.Contains(ourIntForList))
 						{
 							ourrandomquestions.Add(ourIntForList);
@@ -63,24 +63,24 @@ namespace QuizMaker_RM
 						if (wasTheAnswerCorrect)
 						{
 							UI.ThatIsCorrectPrint();
-							GameLogic.currentScore += GameLogic.ADDPOINTS;
+							GameLogic.currentScore += Constants.ADDPOINTS;
 						}
 						else
 						{
-							UI.ThatisNotCorrect();
+							UI.ThatisNotCorrectPrint();
 						}
 
-						UI.PrintCurrentScore(GameLogic.currentScore);
+						UI.CurrentScorePrint(GameLogic.currentScore);
 					}
 
 				}
 
-				if (choice == 2)
+				else if (choice == 2)
 				{
 					UI.PrintOurQuizList(quizList);
 				}
 
-				if (choice == 3)
+				else if (choice == 3)
 				{
 					// writes our questions into the XML
 					GameLogic.WriteToXML(quizList);

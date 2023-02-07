@@ -6,12 +6,9 @@ namespace QuizMaker_RM
 	{
 		public const string PATH = "../../../QuizSheet.xml";
 		static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
-		public static int currentScore = 0;
-		public const int ADDPOINTS = 1;
-		public const int MAXANSWERS = 5;
-		public const int MINANSWERS = 2;
+        public static int currentScore = 0;
 
-		public static void WriteToXML(List<Quiz> quizList)
+        public static void WriteToXML(List<Quiz> quizList)
 		{
 			// writes our written quiz to our xml QuizSheet.xml
 			using (FileStream file = File.OpenWrite(PATH))
@@ -34,7 +31,7 @@ namespace QuizMaker_RM
 		public static bool CheckIfAnswerIsCorrect(Quiz quiz)
 		{
 			bool wasTheAnswerCorrect = false;
-			List<int> answersByIndex = UI.ParseAnswer(MAXANSWERS);
+			List<int> answersByIndex = UI.ParseAnswer(Constants.MAXANSWERS);
 
 			for (int i = 0; i < answersByIndex.Count; i++)
 			{

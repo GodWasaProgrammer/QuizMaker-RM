@@ -17,7 +17,7 @@
 			Console.WriteLine("This Software allows you to make your own quiz!");
 		}
 
-		public static Quiz AddNewQuiz(int MINANSWER,int MAXANSWER)
+		public static Quiz AddNewQuiz()
 		{
 			Quiz newQuiz = new();
 
@@ -43,16 +43,16 @@
 
 				didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
 
-				if (amountOfAnswers < MINANSWER)
+				if (amountOfAnswers < Constants.MINANSWERS)
 				{
 					didItParse = false;
-					Console.WriteLine($"You have to put {MINANSWER} or more answers for a question");
+					Console.WriteLine($"You have to put {Constants.MINANSWERS} or more answers for a question");
 				}
 
-				if (amountOfAnswers > MAXANSWER)
+				if (amountOfAnswers > Constants.MAXANSWERS)
 				{
 					didItParse = false;
-					Console.WriteLine($"Too many answers. needs to be less then {MAXANSWER}");
+					Console.WriteLine($"Too many answers. needs to be less then {Constants.MAXANSWERS}");
 				}
 
 			}
@@ -84,7 +84,7 @@
 			return newQuiz;
 		}
 
-		public static void AddCorrectAnswer(Quiz newQuiz,int MAXANSWERS)
+		public static void AddCorrectAnswer(Quiz newQuiz)
 		{
 			List<int> splitInts = new();
 
@@ -98,7 +98,7 @@
 
 				answerArray = stringToSplit.Split(",");
 
-				if (answerArray.Count() > MAXANSWERS)
+				if (answerArray.Count() > Constants.MAXANSWERS)
 				{
 					Console.WriteLine("Too many inputs, try again");
 				}
@@ -124,7 +124,7 @@
 					}
 					else
 					{
-						UI.InputWasntParsable();
+						UI.InputWasntParsablePrint();
 						splitInts.Clear();
 					}
 
@@ -162,7 +162,7 @@
 
 		}
 
-		public static void PrintCurrentScore(int currentScore)
+		public static void CurrentScorePrint(int currentScore)
 		{
 			Console.WriteLine($"Your Current Score is:{currentScore}");
 		}
@@ -254,17 +254,17 @@
 		{
 			Console.WriteLine("That is Correct!");
 		}
-		public static void InputWasntParsable()
+		public static void InputWasntParsablePrint()
 		{
 			Console.WriteLine("one of your input wasnt parsable.");
 		}
 
-		public static void OnePoint()
+		public static void OnePointPrint()
 		{
 			Console.WriteLine("Each Correct guess is worth 1 point");
 		}
 
-		public static void ThatisNotCorrect()
+		public static void ThatisNotCorrectPrint()
 		{
 			Console.WriteLine("That is incorrect! No point!");
 		}
