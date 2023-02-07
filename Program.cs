@@ -43,7 +43,7 @@ namespace QuizMaker_RM
 
 					// make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
 					do
-					{	
+					{
 						Random OurRandom = new();
 
 						int ourIntForList = OurRandom.Next(quizList.Count);
@@ -53,7 +53,7 @@ namespace QuizMaker_RM
 							ourrandomquestions.Add(ourIntForList);
 							counter--;
 						}
-						//ourrandomquestions.Add(OurRandom.Next(quizList.Count));
+
 					}
 					while (counter > 0);
 
@@ -78,7 +78,7 @@ namespace QuizMaker_RM
 
 				}
 
-				if (choice == 2) 
+				if (choice == 2)
 				{
 					UI.PrintOurQuizList(quizList);
 				}

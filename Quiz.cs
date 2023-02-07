@@ -22,7 +22,9 @@ namespace QuizMaker_RM
 				joinedStrings += prettyListPrintIndex + ". " + trimmedString + ",";
 			}
 			return $"{quizQuestion} Answers:{joinedStrings}";
+
 		}
+
 	}
 
 }
