@@ -8,9 +8,6 @@ namespace QuizMaker_RM
 		{
 			List<Quiz> quizList = new List<Quiz>();
 
-			// our serializer to read/write material to our QuizSheet
-			XmlSerializer serializer = new(typeof(List<Quiz>));
-
 			// repopulates our quizlist from quizsheet.xml on program start
 			quizList = GameLogic.ReadFromXML(quizList);
 

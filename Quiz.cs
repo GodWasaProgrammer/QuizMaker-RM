@@ -7,10 +7,10 @@ namespace QuizMaker_RM
 	{
 		public string quizQuestion;
 		public List<string> Answers = new List<string>();
-
-		public override string ToString()
+        private static char[] asterisk = { '*' };
+        public override string ToString()
 		{
-			char[] asterisk = { '*' };
+			
 			string joinedStrings = "";
 
 			for (int answersIndex = 0; answersIndex < Answers.Count(); answersIndex++)
@@ -19,9 +19,13 @@ namespace QuizMaker_RM
 
 				int prettyListPrintIndex = answersIndex;
 				prettyListPrintIndex++;
-				joinedStrings += prettyListPrintIndex + ". " + trimmedString + ",";
-			}
-			return $"{quizQuestion} Answers:{joinedStrings}";
+				joinedStrings += $"\n{answersIndex + 1}. {trimmedString}";
+                if (answersIndex <= Answers.Count -1)
+                {
+                    joinedStrings += ", ";
+                }
+            }
+			return $"{quizQuestion} \nAnswers:{joinedStrings}";
 
 		}
 
