@@ -181,7 +181,7 @@
 					Console.WriteLine("Could not Parse your input.");
 				}
 
-				if (choice > 3)
+				if (choice > Constants.MAXMENUCHOICE)
 				{
 					Console.WriteLine("Incorrect Choice");
 					didItParse = false;

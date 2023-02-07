@@ -11,5 +11,6 @@ namespace QuizMaker_RM
         public const int ADDPOINTS = 1;
         public const int MAXANSWERS = 5;
         public const int MINANSWERS = 2;
+        public const int MAXMENUCHOICE = 3;
     }
 }
