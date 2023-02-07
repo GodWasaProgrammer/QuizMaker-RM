@@ -23,16 +23,16 @@ namespace QuizMaker_RM
 				UI.MenuPrint();
 
 				// takes our input,parses it, returns a correct value
-				int choice = UI.TakeInput();
+				int choice = UI.TakeMenuInput();
 
-				if (choice == 0)
+				if (choice == 0) // new quiz
 				{
 					Quiz newQuiz = UI.AddNewQuiz();
 					UI.AddCorrectAnswer(newQuiz);
 					quizList.Add(newQuiz);
 				}
 
-				if (choice == 1)
+				if (choice == 1) // play quiz
 				{
 					UI.OnePoint();
 
@@ -43,11 +43,17 @@ namespace QuizMaker_RM
 
 					// make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
 					do
-					{
-						counter--;
-
+					{	
 						Random OurRandom = new();
-						ourrandomquestions.Add(OurRandom.Next(quizList.Count));
+
+						int ourIntForList = OurRandom.Next(quizList.Count);
+
+						if (!ourrandomquestions.Contains(ourIntForList))
+						{
+							ourrandomquestions.Add(ourIntForList);
+							counter--;
+						}
+						//ourrandomquestions.Add(OurRandom.Next(quizList.Count));
 					}
 					while (counter > 0);
 
@@ -55,7 +61,7 @@ namespace QuizMaker_RM
 					{
 						Console.WriteLine(quizList[currentquestion].ToString());
 
-						bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList, currentquestion);
+						bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion]);
 
 						if (wasTheAnswerCorrect)
 						{
@@ -72,7 +78,7 @@ namespace QuizMaker_RM
 
 				}
 
-				if (choice == 2)
+				if (choice == 2) 
 				{
 					UI.PrintOurQuizList(quizList);
 				}

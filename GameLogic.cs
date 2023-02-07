@@ -30,8 +30,8 @@ namespace QuizMaker_RM
 
 			return quizList;
 		}
-
-		public static bool CheckIfAnswerIsCorrect(List<Quiz> quizList, int currentquestion)
+		
+		public static bool CheckIfAnswerIsCorrect(Quiz quiz)
 		{
 			bool wasTheAnswerCorrect = false;
 			List<int> answersByIndex = UI.ParseAnswer();
@@ -41,7 +41,7 @@ namespace QuizMaker_RM
 				int answerByIndex = answersByIndex[i];
 				answerByIndex--;
 
-				if (quizList[currentquestion].Answers[answerByIndex].Contains('*'))
+				if (quiz.Answers[answerByIndex].Contains('*'))
 				{
 					wasTheAnswerCorrect = true;
 				}

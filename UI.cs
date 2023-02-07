@@ -86,10 +86,9 @@
 
 		public static void AddCorrectAnswer(Quiz newQuiz)
 		{
-			string[] answerArray;
-			bool isParsable = false;
 			List<int> splitInts = new();
 
+			string[] answerArray;
 			do
 			{
 				UI.PrintAnswers(newQuiz);
@@ -108,7 +107,7 @@
 
 				foreach (string answer in answerArray)
 				{
-					isParsable = int.TryParse(answer, out splittedStringToIntToList);
+					bool isParsable = int.TryParse(answer, out splittedStringToIntToList);
 
 					if (isParsable)
 					{
@@ -168,7 +167,7 @@
 			Console.WriteLine($"Your Current Score is:{currentScore}");
 		}
 
-		public static int TakeInput()
+		public static int TakeMenuInput()
 		{
 			bool didItParse;
 			int choice;
@@ -246,16 +245,6 @@
 			Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
 		}
 
-		public static void NotAbleToParsePrint()
-		{
-			Console.WriteLine("Was not able to parse your input, try a number between 1 and 3");
-		}
-
-		public static void CanOnlyPickBetweenOneAndThreePrint()
-		{
-			Console.WriteLine("You can only pick 1-3, any other option is not acceptable.");
-		}
-
 		public static void PickAnswerByIndexPrint()
 		{
 			Console.WriteLine("Pick your answer by index");
@@ -265,12 +254,6 @@
 		{
 			Console.WriteLine("That is Correct!");
 		}
-
-		public static void ThatisNotCorrectPrint()
-		{
-			Console.WriteLine("That is not correct...");
-		}
-
 		public static void InputWasntParsable()
 		{
 			Console.WriteLine("one of your input wasnt parsable.");
