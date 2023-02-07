@@ -17,7 +17,7 @@
 			Console.WriteLine("This Software allows you to make your own quiz!");
 		}
 
-		public static Quiz AddNewQuiz()
+		public static Quiz AddNewQuiz(int MINANSWER,int MAXANSWER)
 		{
 			Quiz newQuiz = new();
 
@@ -43,16 +43,16 @@
 
 				didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
 
-				if (amountOfAnswers < GameLogic.MINANSWERS)
+				if (amountOfAnswers < MINANSWER)
 				{
 					didItParse = false;
-					Console.WriteLine($"You have to put {GameLogic.MINANSWERS} or more answers for a question");
+					Console.WriteLine($"You have to put {MINANSWER} or more answers for a question");
 				}
 
-				if (amountOfAnswers > GameLogic.MAXANSWERS)
+				if (amountOfAnswers > MAXANSWER)
 				{
 					didItParse = false;
-					Console.WriteLine($"Too many answers. needs to be less then {GameLogic.MAXANSWERS}");
+					Console.WriteLine($"Too many answers. needs to be less then {MAXANSWER}");
 				}
 
 			}
@@ -84,7 +84,7 @@
 			return newQuiz;
 		}
 
-		public static void AddCorrectAnswer(Quiz newQuiz)
+		public static void AddCorrectAnswer(Quiz newQuiz,int MAXANSWERS)
 		{
 			List<int> splitInts = new();
 
@@ -98,7 +98,7 @@
 
 				answerArray = stringToSplit.Split(",");
 
-				if (answerArray.Count() > GameLogic.MAXANSWERS)
+				if (answerArray.Count() > MAXANSWERS)
 				{
 					Console.WriteLine("Too many inputs, try again");
 				}
@@ -194,7 +194,7 @@
 
 		}
 
-		public static List<int> ParseAnswer()
+		public static List<int> ParseAnswer(int MAXANSWER)
 		{
 			List<int> answersByIndex = new();
 
@@ -210,7 +210,7 @@
 
 				stringArray = multichoiceAnswer.Split(",");
 
-				if (stringArray.Length > GameLogic.MAXANSWERS)
+				if (stringArray.Length > MAXANSWER)
 				{
 					Console.WriteLine("Sorry thats too many");
 				}
@@ -264,5 +264,9 @@
 			Console.WriteLine("Each Correct guess is worth 1 point");
 		}
 
+		public static void ThatisNotCorrect()
+		{
+			Console.WriteLine("That is incorrect! No point!");
+		}
 	}
 }

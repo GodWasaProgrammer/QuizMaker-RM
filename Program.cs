@@ -27,8 +27,8 @@ namespace QuizMaker_RM
 
 				if (choice == 0) // new quiz
 				{
-					Quiz newQuiz = UI.AddNewQuiz();
-					UI.AddCorrectAnswer(newQuiz);
+					Quiz newQuiz = UI.AddNewQuiz(GameLogic.MINANSWERS,GameLogic.MAXANSWERS);
+					UI.AddCorrectAnswer(newQuiz, GameLogic.MAXANSWERS);
 					quizList.Add(newQuiz);
 				}
 
@@ -70,7 +70,7 @@ namespace QuizMaker_RM
 						}
 						else
 						{
-							UI.ThatIsCorrectPrint();
+							UI.ThatisNotCorrect();
 						}
 
 						UI.PrintCurrentScore(GameLogic.currentScore);

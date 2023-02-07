@@ -34,14 +34,16 @@ namespace QuizMaker_RM
 		public static bool CheckIfAnswerIsCorrect(Quiz quiz)
 		{
 			bool wasTheAnswerCorrect = false;
-			List<int> answersByIndex = UI.ParseAnswer();
+			List<int> answersByIndex = UI.ParseAnswer(MAXANSWERS);
 
 			for (int i = 0; i < answersByIndex.Count; i++)
 			{
 				int answerByIndex = answersByIndex[i];
+				if (answerByIndex != 0)
+				{ 
 				answerByIndex--;
-
-				if (quiz.Answers[answerByIndex].Contains('*'))
+                }
+                if (quiz.Answers[answerByIndex].Contains('*'))
 				{
 					wasTheAnswerCorrect = true;
 				}
