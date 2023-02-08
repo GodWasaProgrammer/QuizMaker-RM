@@ -223,9 +223,17 @@
 
 					if (isParsable)
 					{
+						if (parsedNumber < 5)
+						{ 
 						answersByIndex.Add(parsedNumber);
 						parsecounter--;
-					}
+                        }
+						else
+						{
+							Console.WriteLine("That is not a valid choice. your input will be disregarded.");
+						}
+
+                    }
 					else
 					{
 						Console.WriteLine("Something wasnt parsable. try again.");

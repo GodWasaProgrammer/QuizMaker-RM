@@ -27,15 +27,15 @@ namespace QuizMaker_RM
 
 			return quizList;
 		}
-		
-		public static bool CheckIfAnswerIsCorrect(Quiz quiz, List<int> listofIntAnswers)
+		// supports multiple answers as correct
+		public static bool CheckIfAnswerIsCorrect(Quiz quiz, int currentAnswerToCheckIfCorrect)
 		{
 			bool wasTheAnswerCorrect = false;
-			
 
-			for (int i = 0; i < listofIntAnswers.Count; i++)
-			{
-				int answerByIndex = listofIntAnswers[i];
+			
+			//for (int i = 0; i < listofIntAnswers.Count; i++)
+			//{
+				int answerByIndex = currentAnswerToCheckIfCorrect;
 				if (answerByIndex != 0)
 				{ 
 				answerByIndex--;
@@ -49,7 +49,7 @@ namespace QuizMaker_RM
 					wasTheAnswerCorrect = false;
 				}
 
-			}
+			//}
 
 			return wasTheAnswerCorrect;
 		}

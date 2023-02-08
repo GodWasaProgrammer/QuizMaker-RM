@@ -59,17 +59,26 @@ namespace QuizMaker_RM
 					{
 						Console.WriteLine(quizList[currentquestion].ToString());
 
-						bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], UI.ParseAnswer(Constants.MAXANSWERS));
+						List<int> answersToCheckIfCorrect = UI.ParseAnswer(Constants.MAXANSWERS);
+						bool wasTheAnswerCorrect;
+						foreach (int answer in answersToCheckIfCorrect)
+						{
+							wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], answer);
 
-						if (wasTheAnswerCorrect)
-						{
-							UI.ThatIsCorrectPrint();
-							GameLogic.currentScore += Constants.ADDPOINTS;
-						}
-						else
-						{
-							UI.ThatisNotCorrectPrint();
-						}
+                            if (wasTheAnswerCorrect)
+                            {
+                                UI.ThatIsCorrectPrint();
+                                GameLogic.currentScore += Constants.ADDPOINTS;
+                            }
+                            else
+                            {
+                                UI.ThatisNotCorrectPrint();
+                            }
+
+                        }
+						//bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], UI.ParseAnswer(Constants.MAXANSWERS));
+
+						
 
 						UI.CurrentScorePrint(GameLogic.currentScore);
 					}
