@@ -25,6 +25,7 @@ namespace QuizMaker_RM
 				if (choice == 0) // new quiz
 				{
 					Quiz newQuiz = UI.AddNewQuiz();
+
 					UI.AddCorrectAnswer(newQuiz);
 					quizList.Add(newQuiz);
 				}
@@ -58,7 +59,7 @@ namespace QuizMaker_RM
 					{
 						Console.WriteLine(quizList[currentquestion].ToString());
 
-						bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion]);
+						bool wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], UI.ParseAnswer(Constants.MAXANSWERS));
 
 						if (wasTheAnswerCorrect)
 						{

@@ -28,14 +28,14 @@ namespace QuizMaker_RM
 			return quizList;
 		}
 		
-		public static bool CheckIfAnswerIsCorrect(Quiz quiz)
+		public static bool CheckIfAnswerIsCorrect(Quiz quiz, List<int> listofIntAnswers)
 		{
 			bool wasTheAnswerCorrect = false;
-			List<int> answersByIndex = UI.ParseAnswer(Constants.MAXANSWERS);
+			
 
-			for (int i = 0; i < answersByIndex.Count; i++)
+			for (int i = 0; i < listofIntAnswers.Count; i++)
 			{
-				int answerByIndex = answersByIndex[i];
+				int answerByIndex = listofIntAnswers[i];
 				if (answerByIndex != 0)
 				{ 
 				answerByIndex--;
