@@ -120,6 +120,13 @@
 
         }
 
+        public static string ReadMenuChoice()
+        {
+            string choice = Console.ReadLine();
+
+            return choice;
+        }
+
         public static void PrintQuizList(List<Quiz> quizList)
         {
             // Prints what quizzes we have so far
@@ -160,6 +167,11 @@
 
             return choice;
 
+        }
+
+        public static void PrintCurrentQuizObject(Quiz currentQuizObject)
+        {
+            Console.WriteLine(currentQuizObject.ToString());
         }
 
         public static List<int> ParseAnswers(Quiz currentQuiz, string[] StringArray)

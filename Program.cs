@@ -60,7 +60,7 @@
                                 }
 
                             }
-                            while (Console.ReadLine() == "y");
+                            while (UI.ReadMenuChoice() == "y");
 
                             quizList.Add(newQuiz);
 
@@ -96,8 +96,10 @@
 
                             foreach (int currentquestion in ourrandomquestions)
                             {
-                                Console.WriteLine(quizList[currentquestion].ToString());
+                                UI.PrintCurrentQuizObject(quizList[currentquestion]);
+
                                 string[] answersToCheckIfCorrect;
+
                                 do
                                 {
                                     answersToCheckIfCorrect = UI.ReadAnswer(quizList[currentquestion]);
@@ -115,10 +117,7 @@
                                 } // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
                                 while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains(Constants.MIN_GUESS_STRING));
 
-                                List<int> parsedandWithinBoundsInt = null;
-
-                                parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
-                                // parse, point and evaluation to check if your answer is correct
+                                List<int> parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
 
                                 bool wasTheAnswerCorrect;
 
@@ -152,8 +151,11 @@
                             return;
                         }
                 }
-            } while (true);
+            } 
+            while (true);
+
         }
+
     }
 }
 
