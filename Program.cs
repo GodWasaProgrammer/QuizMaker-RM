@@ -70,6 +70,10 @@ namespace QuizMaker_RM
                             while (Console.ReadLine() == "y");
 
                             quizList.Add(newQuiz);
+
+                            // writes our questions into the XML
+                            GameLogic.WriteToXML(quizList);
+
                             break;
                         }
                     case 1:
@@ -151,8 +155,6 @@ namespace QuizMaker_RM
                         }
                     case 3:
                         {
-                            // writes our questions into the XML
-                            GameLogic.WriteToXML(quizList);
                             // exits
                             Environment.Exit(0);
                             break;
