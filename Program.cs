@@ -48,10 +48,14 @@ namespace QuizMaker_RM
 						if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
 						{
 							newQuiz.Answers[correctAnswerChosen] += "*";
-							UI.AlreadyMarkedAsCorrectPrint();
+							UI.MarkedasCorrectAnswerPrint();
 						}
+						else
+						{
+                            UI.AlreadyMarkedAsCorrectPrint();
+                        }
 
-						if (newQuiz.Answers.Count + 1 > disAllowMoreCorrectAnswersThenAllButOne)
+						if (newQuiz.Answers.Count - 1 < disAllowMoreCorrectAnswersThenAllButOne)
 						{
 							break;
 						}

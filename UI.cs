@@ -259,5 +259,10 @@
 		{
 			Console.WriteLine("Would you like to add another correct answer?\n if so enter y");
 		}
+
+		public static void MarkedasCorrectAnswerPrint()
+		{
+			Console.WriteLine("Your answer has been marked as the correct one.");
+        }
 	}
 }
