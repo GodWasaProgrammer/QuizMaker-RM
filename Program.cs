@@ -112,13 +112,12 @@ namespace QuizMaker_RM
 						while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains("0"));
 
 						List<int> parsedandWithinBoundsInt = null;
-						// parse, point and evaluation to check if your answer is correct
-						foreach (string answerToParseAndEvaluate in answersToCheckIfCorrect)
-						{
-							parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
+
+                        parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
+                        // parse, point and evaluation to check if your answer is correct
+
 							bool wasTheAnswerCorrect;
 
-							{
 								wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedandWithinBoundsInt);
 
 								if (wasTheAnswerCorrect)
@@ -131,9 +130,6 @@ namespace QuizMaker_RM
 									UI.ThatisNotCorrectPrint();
 								}
 
-							}
-
-						}
 						parsedandWithinBoundsInt.Clear();
 						UI.CurrentScorePrint(GameLogic.currentScore);
 						
