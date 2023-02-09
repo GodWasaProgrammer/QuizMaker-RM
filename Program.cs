@@ -8,14 +8,14 @@
             List<Quiz> quizList = GameLogic.ReadFromXML();
 
             // Welcome message
-            UI.WelcomeMessage();
+            UI.PrintWelcomeMessage();
             do
             {
                 // Menu Options
-                UI.MenuPrint();
+                UI.PrintMenu();
 
                 // takes our input,parses it, returns a correct value
-                int choice = UI.TakeMenuInput();
+                int choice = UI.ReadMenuInput();
 
                 switch (choice)
                 {
@@ -24,29 +24,29 @@
                             Quiz newQuiz = new();
 
                             // add our question to quiz object
-                            newQuiz.quizQuestion = UI.AddNewQuestion();
+                            newQuiz.quizQuestion = UI.ReadNewQuestion();
 
                             // returns how many answers we have chosen
-                            int amountOfAnswers = UI.AmountOfAnswers();
+                            int amountOfAnswers = UI.ReadAmountOfAnswers();
 
                             // loops to fill our answers
                             for (int answer = 0; answer < amountOfAnswers; answer++)
                             {
-                                newQuiz.Answers.Add(UI.ReturnOneAnswer());
+                                newQuiz.Answers.Add(UI.ReadAnswer());
                             }
 
                             do
                             {
-                                int correctAnswerChosen = UI.TakeOneCorrectAnswerAndParse(newQuiz);
+                                int correctAnswerChosen = UI.ReadCorrectAnswerAndParse(newQuiz);
                                 
                                 if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
                                 {
                                     newQuiz.Answers[correctAnswerChosen] += "*";
-                                    UI.MarkedasCorrectAnswerPrint();
+                                    UI.PrintMarkedasCorrectAnswer();
                                 }
                                 else
                                 {
-                                    UI.AlreadyMarkedAsCorrectPrint();
+                                    UI.PrintAlreadyMarkedAsCorrect();
                                 }
 
                                 // disallows more correct answers then answers count minus one, so all can be correct but one
@@ -56,7 +56,7 @@
                                 }
                                 else
                                 {
-                                    UI.AddAnotherAnswerPrint();
+                                    UI.PrintAddAnotherAnswer();
                                 }
 
                             }
@@ -71,7 +71,7 @@
                         }
                     case 1:
                         {
-                            UI.IfYouWinItsOnePointPrint();
+                            UI.PrintOnePointToWin();
 
                             List<int> ourrandomquestions = new();
 
@@ -104,12 +104,12 @@
 
                                     if (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1)
                                     {
-                                        UI.InputTooLongPrint();
+                                        UI.PrintInputTooLong();
                                     }
 
                                     if (answersToCheckIfCorrect.Contains(Constants.MIN_GUESS_STRING))
                                     {
-                                        UI.InputofZeroNotAllowed();
+                                        UI.PrintNotAllowed();
                                     }
 
                                 } // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
@@ -126,16 +126,16 @@
 
                                 if (wasTheAnswerCorrect)
                                 {
-                                    UI.ThatIsCorrectPrint();
+                                    UI.PrintThatIsCorrect();
                                     GameLogic.AddPoints();
                                 }
                                 else
                                 {
-                                    UI.ThatisNotCorrectPrint();
+                                    UI.PrintThatIsNotCorrect();
                                 }
 
                                 parsedandWithinBoundsInt.Clear();
-                                UI.CurrentScorePrint(GameLogic.currentScore);
+                                UI.PrintCurrentScore(GameLogic.currentScore);
 
                             }
                             break;
@@ -143,7 +143,7 @@
                         }
                     case 2:
                         {
-                            UI.PrintOurQuizList(quizList);
+                            UI.PrintQuizList(quizList);
                             break;
                         }
                     case 3:

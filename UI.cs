@@ -2,12 +2,12 @@
 {
     public class UI
     {
-        public static void WelcomeMessage()
+        public static void PrintWelcomeMessage()
         {
             Console.WriteLine("Welcome to Our Quiz Maker!");
             Console.WriteLine("This Software allows you to make your own quiz!");
         }
-        public static string ReturnOneAnswer()
+        public static string ReadAnswer()
         {
             string input;
 
@@ -29,7 +29,7 @@
 
             return input;
         }
-        public static int AmountOfAnswers()
+        public static int ReadAmountOfAnswers()
         {
 
             int amountOfAnswers;
@@ -59,7 +59,7 @@
             return amountOfAnswers;
         }
 
-        public static string AddNewQuestion()
+        public static string ReadNewQuestion()
         {
             string input;
             do
@@ -78,7 +78,7 @@
             return input;
         }
 
-        public static int TakeOneCorrectAnswerAndParse(Quiz newQuiz)
+        public static int ReadCorrectAnswerAndParse(Quiz newQuiz)
         {
             int answer;
             bool isParsable;
@@ -120,7 +120,7 @@
 
         }
 
-        public static void PrintOurQuizList(List<Quiz> quizList)
+        public static void PrintQuizList(List<Quiz> quizList)
         {
             // Prints what quizzes we have so far
             foreach (var item in quizList)
@@ -130,12 +130,12 @@
 
         }
 
-        public static void CurrentScorePrint(int currentScore)
+        public static void PrintCurrentScore(int currentScore)
         {
             Console.WriteLine($"Your Current Score is:{currentScore}");
         }
 
-        public static int TakeMenuInput()
+        public static int ReadMenuInput()
         {
             bool didItParse;
             int choice;
@@ -222,51 +222,47 @@
             return stringArray;
         }
 
-        public static void MenuPrint()
+        public static void PrintMenu()
         {
             Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
         }
 
-        public static void ThatIsCorrectPrint()
+        public static void PrintThatIsCorrect()
         {
             Console.WriteLine("That is Correct!");
         }
-        public static void InputWasntParsablePrint()
-        {
-            Console.WriteLine("one of your input wasnt parsable.");
-        }
 
-        public static void IfYouWinItsOnePointPrint()
+        public static void PrintOnePointToWin()
         {
             Console.WriteLine("Each Correct guess is worth 1 point");
         }
 
-        public static void ThatisNotCorrectPrint()
+        public static void PrintThatIsNotCorrect()
         {
             Console.WriteLine("That is incorrect! No point!");
         }
 
-        public static void AlreadyMarkedAsCorrectPrint()
+        public static void PrintAlreadyMarkedAsCorrect()
         {
             Console.WriteLine("This answer was already marked as the correct one");
         }
 
-        public static void AddAnotherAnswerPrint()
+        public static void PrintAddAnotherAnswer()
         {
             Console.WriteLine("Would you like to add another correct answer?\n if so enter y");
         }
 
-        public static void MarkedasCorrectAnswerPrint()
+        public static void PrintMarkedasCorrectAnswer()
         {
             Console.WriteLine("Your answer has been marked as the correct one.");
         }
 
-        public static void InputTooLongPrint()
+        public static void PrintInputTooLong()
         {
             Console.WriteLine("your input is too long. cant be more answers then the amount of answers minus one");
         }
 
-        public static void InputofZeroNotAllowed()
+        public static void PrintNotAllowed()
         {
             Console.WriteLine("Input of 0 is not allowed.");
         }
