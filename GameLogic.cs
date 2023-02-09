@@ -18,8 +18,10 @@ namespace QuizMaker_RM
 
 		}
 
-		public static List<Quiz> ReadFromXML(List<Quiz> quizList)
+		public static List<Quiz> ReadFromXML()
 		{
+			List<Quiz> quizList = new();
+
 			using (FileStream file = File.OpenRead(PATH))
 			{
 				quizList = serializer.Deserialize(file) as List<Quiz>;

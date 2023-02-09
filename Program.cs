@@ -6,10 +6,8 @@ namespace QuizMaker_RM
     {
         public static void Main()
         {
-            List<Quiz> quizList = new List<Quiz>();
-
             // repopulates our quizlist from quizsheet.xml on program start
-            quizList = GameLogic.ReadFromXML(quizList);
+            List<Quiz> quizList = GameLogic.ReadFromXML();
 
             // Welcome message
             UI.WelcomeMessage();
