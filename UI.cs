@@ -278,5 +278,6 @@
         {
             Console.WriteLine("Input of 0 is not allowed.");
         }
+
     }
 }
