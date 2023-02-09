@@ -64,7 +64,7 @@ namespace QuizMaker_RM
 
         public static void AddPoints()
 		{
-            currentScore += Constants.ADDPOINTS;
+            currentScore += Constants.ADD_POINTS;
         }
 		
 	}

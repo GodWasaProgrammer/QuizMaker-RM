@@ -2,13 +2,11 @@
 {
     public class Constants
     {
-        public const int ADDPOINTS = 1; // point for a correct guess
-        public const int MAXANSWERS = 5; // maximum amount of answers
-        public const int MINANSWERS = 2; // minimum accepted amount of answers
-        public const int MAXMENUCHOICE = 3; // the max menu choice you can make
-        public const int MAXIMUMACCEPTABLEANSWERCHOICE = 5; // max accepted answers is 5
-        public const int NUMBEROFQUESTIONSTOBEASKED = 5; 
-        public const int MINGUESSVALUE = 0; // 0 is minimum guess
-        public const string MINGUESSASSTRING = "0";
+        public const int ADD_POINTS = 1; // point for a correct guess
+        public const int MAX_ANSWERS = 5; // maximum amount of answers to register
+        public const int MIN_ANSWERS = 2; // minimum accepted amount of answers
+        public const int MAX_MENU_CHOICE = 3; // the max menu choice you can make
+        public const int QUESTION_COUNT = 5; // this is different from maxanswers in its using, its used to decide how many questions we random for the quiz
+        public const string MIN_GUESS_STRING = "0";
     }
 }

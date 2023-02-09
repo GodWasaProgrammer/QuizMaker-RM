@@ -41,16 +41,16 @@
 
                 didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
 
-                if (amountOfAnswers < Constants.MINANSWERS)
+                if (amountOfAnswers < Constants.MIN_ANSWERS)
                 {
                     didItParse = false;
-                    Console.WriteLine($"You have to put {Constants.MINANSWERS} or more answers for a question");
+                    Console.WriteLine($"You have to put {Constants.MIN_ANSWERS} or more answers for a question");
                 }
 
-                if (amountOfAnswers > Constants.MAXANSWERS)
+                if (amountOfAnswers > Constants.MAX_ANSWERS)
                 {
                     didItParse = false;
-                    Console.WriteLine($"Too many answers. needs to be less then {Constants.MAXANSWERS}");
+                    Console.WriteLine($"Too many answers. needs to be less then {Constants.MAX_ANSWERS}");
                 }
 
             }
@@ -148,7 +148,7 @@
                     Console.WriteLine("Could not Parse your input.");
                 }
 
-                if (choice > Constants.MAXMENUCHOICE)
+                if (choice > Constants.MAX_MENU_CHOICE)
                 {
                     Console.WriteLine("Incorrect Choice");
                     didItParse = false;
