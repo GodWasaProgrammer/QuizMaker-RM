@@ -1,280 +1,261 @@
 ﻿namespace QuizMaker_RM
 {
-	public class UI
-	{
-		static readonly List<string> listOfSuffixForPrint = new()
-				{
-					"First",
-					"Second",
-					"Third",
-					"Fourth",
-					"Fifth"
-				};
+    public class UI
+    {
+        public static void WelcomeMessage()
+        {
+            Console.WriteLine("Welcome to Our Quiz Maker!");
+            Console.WriteLine("This Software allows you to make your own quiz!");
+        }
+        public static string ReturnOneAnswer()
+        {
+            //// registers our inputs
+            int numberOfSuffixToPrint = 0;
+            string input;
+            do
+            {
+                Console.WriteLine($"Enter Your Answer");
 
-		public static void WelcomeMessage()
-		{
-			Console.WriteLine("Welcome to Our Quiz Maker!");
-			Console.WriteLine("This Software allows you to make your own quiz!");
-		}
 
-		public static Quiz AddNewQuiz()
-		{
-			Quiz newQuiz = new();
+                input = Console.ReadLine();
 
-			do
-			{
-				Console.WriteLine("Enter Your Quiz-Question:");
-				newQuiz.quizQuestion = Console.ReadLine();
+                if (input == string.Empty || input == null)
+                {
+                    numberOfSuffixToPrint--;
+                    Console.WriteLine("You have to type an answer.");
+                }
 
-				if (newQuiz.quizQuestion == string.Empty)
-				{
-					Console.WriteLine("You have to type a question.");
-				}
 
-			}
-			while (newQuiz.quizQuestion == string.Empty);
+            }
+            while (input == string.Empty || input == null);
 
-			int amountOfAnswers;
-			bool didItParse;
+            return input;
+        }
+        public static int AmountOfAnswers()
+        {
 
-			do
-			{    // takes answers
-				Console.WriteLine("Input your amount of answers");
+            int amountOfAnswers;
+            bool didItParse;
 
-				didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
+            do
+            {    // takes answers
+                Console.WriteLine("Input your amount of answers");
 
-				if (amountOfAnswers < Constants.MINANSWERS)
-				{
-					didItParse = false;
-					Console.WriteLine($"You have to put {Constants.MINANSWERS} or more answers for a question");
-				}
+                didItParse = int.TryParse(Console.ReadLine(), out amountOfAnswers);
 
-				if (amountOfAnswers > Constants.MAXANSWERS)
-				{
-					didItParse = false;
-					Console.WriteLine($"Too many answers. needs to be less then {Constants.MAXANSWERS}");
-				}
+                if (amountOfAnswers < Constants.MINANSWERS)
+                {
+                    didItParse = false;
+                    Console.WriteLine($"You have to put {Constants.MINANSWERS} or more answers for a question");
+                }
 
-			}
-			while (didItParse == false);
+                if (amountOfAnswers > Constants.MAXANSWERS)
+                {
+                    didItParse = false;
+                    Console.WriteLine($"Too many answers. needs to be less then {Constants.MAXANSWERS}");
+                }
 
-			//// registers our inputs
-			int numberOfSuffixToPrint = 0;
-			do
-			{
-				Console.WriteLine($"Enter Your {listOfSuffixForPrint[numberOfSuffixToPrint]} Answer");
+            }
+            while (didItParse == false);
 
-				numberOfSuffixToPrint++;
+            return amountOfAnswers;
+        }
 
-				string input = Console.ReadLine();
+        public static string AddNewQuestion()
+        {
+            string input;
+            do
+            {
+                Console.WriteLine("Enter Your Quiz-Question:");
+                input = Console.ReadLine();
 
-				if (input == string.Empty || input == null)
-				{
-					numberOfSuffixToPrint--;
-					Console.WriteLine("You have to type an answer.");
-				}
-				else
-				{
-					newQuiz.Answers.Add(input);
-				}
+                if (input == string.Empty)
+                {
+                    Console.WriteLine("You have to type a question.");
+                }
 
-			}
-			while (newQuiz.Answers.Count < amountOfAnswers);
+            }
+            while (input == string.Empty);
 
-			return newQuiz;
-		}
+            return input;
+        }
 
-		public static void AddCorrectAnswer(Quiz newQuiz)
-		{
-			List<int> splitInts = new();
+        public static int TakeOneCorrectAnswerAndParse(Quiz newQuiz)
+        {
+            int answer;
+            bool isParsable;
+            do
+            {
+                string input;
+                
+                UI.PrintAnswers(newQuiz);
 
-			string[] answerArray;
-			do
-			{
-				UI.PrintAnswers(newQuiz);
-				Console.WriteLine("Enter Your Correct Answer by number:");
-				Console.WriteLine("If multiple choices are correct, just input them like this: 1,2,3,4,5");
-				string stringToSplit = Console.ReadLine();
+                Console.WriteLine("Enter Your Correct Answer by number:");
 
-				answerArray = stringToSplit.Split(",");
+                input = Console.ReadLine();
 
-				if (answerArray.Count() > Constants.MAXANSWERS)
-				{
-					Console.WriteLine("Too many inputs, try again");
-				}
+                isParsable = int.TryParse(input, out answer);
 
-				int splittedStringToIntToList;
+                if (answer > newQuiz.Answers.Count)
+                {
+                    Console.WriteLine("That answer doesnt exist. try again");
+                }
 
-				foreach (string answer in answerArray)
-				{
-					bool isParsable = int.TryParse(answer, out splittedStringToIntToList);
+                if (isParsable == false)
+                {
+                    Console.WriteLine("That isnt a number. try again");
+                }
 
-					if (isParsable)
-					{
-						if (newQuiz.Answers.Contains(answer))
-						{
-							splitInts.Add(splittedStringToIntToList);
-						}
-						else
-						{
-							Console.WriteLine("That answer is not an option.");
-							splitInts.Clear();
-						}
+            } 
+            while (answer > newQuiz.Answers.Count || isParsable == false);
 
-					}
-					else
-					{
-						UI.InputWasntParsablePrint();
-						splitInts.Clear();
-					}
+            return answer;
+        }
 
-				}
+        public static void PrintAnswers(Quiz newQuiz)
+        {
+            for (int answers = 0; answers < newQuiz.Answers.Count(); answers++)
+            {
+                Console.WriteLine($"{answers+1}. {newQuiz.Answers[answers]}");
+            }
 
-			}
-			while (answerArray.Length != splitInts.Count);
+        }
 
-			for (int i = 0; i < splitInts.Count; i++)
-			{
-				var IndexOfANswer = splitInts[i];
-				IndexOfANswer--;
-				newQuiz.Answers[IndexOfANswer] += "*";
-			}
+        public static void PrintOurQuizList(List<Quiz> quizList)
+        {
+            // Prints what quizzes we have so far
+            foreach (var item in quizList)
+            {
+                Console.WriteLine(item.ToString());
+            }
 
-		}
+        }
 
-		public static void PrintAnswers(Quiz newQuiz)
-		{
-			for (int answers = 0; answers < newQuiz.Answers.Count(); answers++)
-			{
-				int indexToPrintForList = answers + 1;
-				Console.WriteLine($"{indexToPrintForList}. {newQuiz.Answers[answers]}");
-			}
+        public static void CurrentScorePrint(int currentScore)
+        {
+            Console.WriteLine($"Your Current Score is:{currentScore}");
+        }
 
-		}
+        public static int TakeMenuInput()
+        {
+            bool didItParse;
+            int choice;
+            do
+            {
+                didItParse = int.TryParse(Console.ReadLine(), out choice);
+                choice--;
 
-		public static void PrintOurQuizList(List<Quiz> quizList)
-		{
-			// Prints what quizzes we have so far
-			foreach (var item in quizList)
-			{
-				Console.WriteLine(item.ToString());
-			}
+                if (didItParse == false)
+                {
+                    Console.WriteLine("Could not Parse your input.");
+                }
 
-		}
+                if (choice > Constants.MAXMENUCHOICE)
+                {
+                    Console.WriteLine("Incorrect Choice");
+                    didItParse = false;
+                }
 
-		public static void CurrentScorePrint(int currentScore)
-		{
-			Console.WriteLine($"Your Current Score is:{currentScore}");
-		}
+            }
+            while (didItParse == false);
 
-		public static int TakeMenuInput()
-		{
-			bool didItParse;
-			int choice;
-			do
-			{
-				didItParse = int.TryParse(Console.ReadLine(), out choice);
-				choice--;
+            return choice;
 
-				if (didItParse == false)
-				{
-					Console.WriteLine("Could not Parse your input.");
-				}
+        }
 
-				if (choice > Constants.MAXMENUCHOICE)
-				{
-					Console.WriteLine("Incorrect Choice");
-					didItParse = false;
-				}
+        public static List<int> ParseAnswer(Quiz currentQuiz)
+        {
+            List<int> answersByIndex = new();
 
-			}
-			while (didItParse == false);
+            PickAnswerByIndexPrint();
 
-			return choice;
+            string[] stringArray;
 
-		}
+            bool isParsable = false;
 
-		public static List<int> ParseAnswer(int MAXANSWER)
-		{
-			List<int> answersByIndex = new();
+            do
+            {
+                string multichoiceAnswer = Console.ReadLine();
 
-			PickAnswerByIndexPrint();
+                stringArray = multichoiceAnswer.Split(",");
 
-			string[] stringArray;
+                if (stringArray.Length >= currentQuiz.Answers.Count)
+                {
+                    Console.WriteLine("Sorry thats too many"); // bool too many?
+                }
 
-			bool isParsable = false;
+                if (stringArray.Length < currentQuiz.Answers.Count)
+                {
+                    int parsecounter = stringArray.Length;
+                    foreach (string answerIndex in stringArray)
+                    {
+                        isParsable = int.TryParse(answerIndex, out int parsedNumber);
 
-			do
-			{
-				string multichoiceAnswer = Console.ReadLine();
+                        if (isParsable)
+                        {
+                            if (parsedNumber < currentQuiz.Answers.Count)
+                            {
+                                answersByIndex.Add(parsedNumber);
+                                parsecounter--;
+                            }
+                            else
+                            {
+                                Console.WriteLine("That is not a valid choice. your input will be disregarded.");
+                            }
 
-				stringArray = multichoiceAnswer.Split(",");
-
-				if (stringArray.Length > MAXANSWER)
-				{
-					Console.WriteLine("Sorry thats too many");
-				}
-
-				int parsecounter = stringArray.Length;
-
-				foreach (string answerIndex in stringArray)
-				{
-					isParsable = int.TryParse(answerIndex, out int parsedNumber);
-
-					if (isParsable)
-					{
-						if (parsedNumber < 5)
-						{ 
-						answersByIndex.Add(parsedNumber);
-						parsecounter--;
                         }
-						else
-						{
-							Console.WriteLine("That is not a valid choice. your input will be disregarded.");
-						}
+                        else
+                        {
+                            Console.WriteLine("Something wasnt parsable. try again.");
+                            isParsable = false;
+                        }
 
                     }
-					else
-					{
-						Console.WriteLine("Something wasnt parsable. try again.");
-						isParsable = false;
-					}
 
-				}
+                }
+            }
+            while (isParsable == false);
 
-			}
-			while (isParsable == false);
+            return answersByIndex;
+        }
 
-			return answersByIndex;
-		}
+        public static void MenuPrint()
+        {
+            Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
+        }
 
-		public static void MenuPrint()
-		{
-			Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
-		}
+        public static void PickAnswerByIndexPrint()
+        {
+            Console.WriteLine("Pick your answer by index");
+        }
 
-		public static void PickAnswerByIndexPrint()
-		{
-			Console.WriteLine("Pick your answer by index");
-		}
+        public static void ThatIsCorrectPrint()
+        {
+            Console.WriteLine("That is Correct!");
+        }
+        public static void InputWasntParsablePrint()
+        {
+            Console.WriteLine("one of your input wasnt parsable.");
+        }
 
-		public static void ThatIsCorrectPrint()
-		{
-			Console.WriteLine("That is Correct!");
-		}
-		public static void InputWasntParsablePrint()
-		{
-			Console.WriteLine("one of your input wasnt parsable.");
-		}
+        public static void IfYouWinItsOnePointPrint()
+        {
+            Console.WriteLine("Each Correct guess is worth 1 point");
+        }
 
-		public static void OnePointPrint()
-		{
-			Console.WriteLine("Each Correct guess is worth 1 point");
-		}
+        public static void ThatisNotCorrectPrint()
+        {
+            Console.WriteLine("That is incorrect! No point!");
+        }
 
-		public static void ThatisNotCorrectPrint()
-		{
-			Console.WriteLine("That is incorrect! No point!");
-		}
-	}
+        public static void AlreadyMarkedAsCorrectPrint()
+        {
+            Console.WriteLine("This answer was already marked as the correct one");
+        }
+
+        public static void AddAnotherAnswerPrint()
+        {
+            Console.WriteLine("Would you like to add another correct answer?\n if so enter y");
+        }
+    }
 }

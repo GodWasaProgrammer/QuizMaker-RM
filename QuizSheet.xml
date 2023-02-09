@@ -56,4 +56,11 @@
       <string>aefaefaef*</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>200</quizQuestion>
+    <Answers>
+      <string>2</string>
+      <string>2*</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>

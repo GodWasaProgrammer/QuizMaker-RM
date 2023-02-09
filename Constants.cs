@@ -13,5 +13,6 @@ namespace QuizMaker_RM
         public const int MINANSWERS = 2; // minimum accepted amount of answers
         public const int MAXMENUCHOICE = 3; // the max menu choice you can make
         public const int MAXIMUMACCEPTABLEANSWERCHOICE = 5;
+        public const int NUMBEROFQUESTIONSTOBEASKED = 5;
     }
 }
