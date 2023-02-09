@@ -13,11 +13,9 @@ namespace QuizMaker_RM
 			
 			string joinedStrings = "";
 
-			for (int answersIndex = 0; answersIndex < Answers.Count(); answersIndex++)
+			for (int answersIndex = 0; answersIndex < Answers.Count; answersIndex++)
 			{
 				string trimmedString = Answers[answersIndex].Trim(asterisk);
-
-				int prettyListPrintIndex = answersIndex;
 
 				joinedStrings += $"\n{answersIndex + 1}. {trimmedString}";
                 if (answersIndex <= Answers.Count -1)
