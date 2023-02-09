@@ -156,8 +156,7 @@ namespace QuizMaker_RM
                     case 3:
                         {
                             // exits
-                            Environment.Exit(0);
-                            break;
+                            return;
                         }
                 }
             } while (true);
