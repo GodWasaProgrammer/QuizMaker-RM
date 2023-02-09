@@ -15,5 +15,6 @@ namespace QuizMaker_RM
         public const int MAXIMUMACCEPTABLEANSWERCHOICE = 5; // max accepted answers is 5
         public const int NUMBEROFQUESTIONSTOBEASKED = 5; 
         public const int MINGUESSVALUE = 0; // 0 is minimum guess
+        public const string MINGUESSASSTRING = "0";
     }
 }
