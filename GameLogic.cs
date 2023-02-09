@@ -38,10 +38,6 @@ namespace QuizMaker_RM
 				{
 					int answerByIndex = answer;
 
-					if (answerByIndex != 0)
-					{
-						answerByIndex--;
-					}
 					if (quiz.Answers[answerByIndex].Contains('*'))
 					{
 						wasTheAnswerCorrect = true;
