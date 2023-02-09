@@ -18,7 +18,7 @@ namespace QuizMaker_RM
 				string trimmedString = Answers[answersIndex].Trim(asterisk);
 
 				int prettyListPrintIndex = answersIndex;
-				prettyListPrintIndex++;
+
 				joinedStrings += $"\n{answersIndex + 1}. {trimmedString}";
                 if (answersIndex <= Answers.Count -1)
                 {

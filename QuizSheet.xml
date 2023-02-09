@@ -63,4 +63,11 @@
       <string>2*</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>aefaef</quizQuestion>
+    <Answers>
+      <string>aefaef</string>
+      <string>aefaef*</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>

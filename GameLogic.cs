@@ -28,32 +28,38 @@ namespace QuizMaker_RM
 			return quizList;
 		}
 		// supports multiple answers as correct
-		public static bool CheckIfAnswerIsCorrect(Quiz quiz, int currentAnswerToCheckIfCorrect)
+		public static bool CheckIfAnswerIsCorrect(Quiz quiz, List<int> currentAnswerToCheckIfCorrect)
 		{
             bool wasTheAnswerCorrect = false;
 			
-			// should always pass first if
-            if (currentAnswerToCheckIfCorrect < Constants.MAXIMUMACCEPTABLEANSWERCHOICE)
-			{ 
-				int answerByIndex = currentAnswerToCheckIfCorrect;
-				if (answerByIndex != 0)
-				{ 
-				answerByIndex--;
-                }
-                if (quiz.Answers[answerByIndex].Contains('*'))
+			foreach (int answer in currentAnswerToCheckIfCorrect)
+			{
+				if (answer < quiz.Answers.Count)
 				{
-					wasTheAnswerCorrect = true;
+					int answerByIndex = answer;
+
+					if (answerByIndex != 0)
+					{
+						answerByIndex--;
+					}
+					if (quiz.Answers[answerByIndex].Contains('*'))
+					{
+						wasTheAnswerCorrect = true;
+					}
+					else
+					{
+						wasTheAnswerCorrect = false;
+					}
+
 				}
 				else
 				{
-					wasTheAnswerCorrect = false;
+					throw new ArgumentOutOfRangeException("Parameter is out of range.");
 				}
-
-            }
-			else
-			{
-				throw new ArgumentOutOfRangeException("Parameter is out of range.");
 			}
+
+			// should always pass first if
+            
 
             return wasTheAnswerCorrect;
 		}
@@ -62,41 +68,6 @@ namespace QuizMaker_RM
 		{
             currentScore += Constants.ADDPOINTS;
         }
-		public static List<int> EvaluateIfInputIsValid(Quiz currentQuiz , string[] stringArray)
-		{
-			bool isParsable = false;
-            List<int> answersByIndex = new();
-
-            if (stringArray.Length < currentQuiz.Answers.Count)
-            {
-                int parsecounter = stringArray.Length;
-                foreach (string answerIndex in stringArray)
-                {
-                    isParsable = int.TryParse(answerIndex, out int parsedNumber);
-
-                    if (isParsable)
-                    {
-                        if (parsedNumber < currentQuiz.Answers.Count)
-                        {
-                            answersByIndex.Add(parsedNumber);
-                            parsecounter--;
-                        }
-                        else
-                        {
-                            Console.WriteLine("That is not a valid choice. your input will be disregarded.");
-                        }
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("Something wasnt parsable. try again.");
-                    }
-
-                }
-
-            }
-
-			return answersByIndex;
-        }
+		
 	}
 }
