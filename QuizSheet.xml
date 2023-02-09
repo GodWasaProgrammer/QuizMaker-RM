@@ -70,4 +70,18 @@
       <string>aefaef*</string>
     </Answers>
   </Quiz>
+  <Quiz>
+    <quizQuestion>aefaefaef</quizQuestion>
+    <Answers>
+      <string>aefaef*</string>
+      <string>aefaef</string>
+    </Answers>
+  </Quiz>
+  <Quiz>
+    <quizQuestion>1</quizQuestion>
+    <Answers>
+      <string>3*</string>
+      <string>24</string>
+    </Answers>
+  </Quiz>
 </ArrayOfQuiz>

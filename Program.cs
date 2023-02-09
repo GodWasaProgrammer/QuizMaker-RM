@@ -1,6 +1,4 @@
-﻿using System.Xml.Serialization;
-
-namespace QuizMaker_RM
+﻿namespace QuizMaker_RM
 {
     public class Program
     {

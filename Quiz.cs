@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-
-namespace QuizMaker_RM
+﻿namespace QuizMaker_RM
 {
 	public class Quiz
 	{
