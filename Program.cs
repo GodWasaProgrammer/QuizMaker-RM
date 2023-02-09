@@ -2,165 +2,166 @@
 
 namespace QuizMaker_RM
 {
-	public class Program
-	{
-		public static void Main()
-		{
-			List<Quiz> quizList = new List<Quiz>();
+    public class Program
+    {
+        public static void Main()
+        {
+            List<Quiz> quizList = new List<Quiz>();
 
-			// repopulates our quizlist from quizsheet.xml on program start
-			quizList = GameLogic.ReadFromXML(quizList);
+            // repopulates our quizlist from quizsheet.xml on program start
+            quizList = GameLogic.ReadFromXML(quizList);
 
-			// Welcome message
-			UI.WelcomeMessage();
+            // Welcome message
+            UI.WelcomeMessage();
+            do
+            {
+                // Menu Options
+                UI.MenuPrint();
 
-			do
-			{
-				// Menu Options
-				UI.MenuPrint();
+                // takes our input,parses it, returns a correct value
+                int choice = UI.TakeMenuInput();
 
-				// takes our input,parses it, returns a correct value
-				int choice = UI.TakeMenuInput();
+                switch (choice)
+                {
+                    case 0:
+                        {
+                            Quiz newQuiz = new();
 
-				if (choice == 0) // new quiz
-				{
-					Quiz newQuiz = new();
+                            // add our question to quiz object
+                            newQuiz.quizQuestion = UI.AddNewQuestion();
 
-					// add our question to quiz object
-					newQuiz.quizQuestion = UI.AddNewQuestion();
+                            // returns how many answers we have chosen
+                            int amountOfAnswers = UI.AmountOfAnswers();
 
-					// returns how many answers we have chosen
-					int amountOfAnswers = UI.AmountOfAnswers();
+                            // loops to fill our answers
+                            for (int answer = 0; answer < amountOfAnswers; answer++)
+                            {
+                                newQuiz.Answers.Add(UI.ReturnOneAnswer());
+                            }
 
-					// loops to fill our answers
-					for (int answer = 0; answer < amountOfAnswers; answer++)
-					{
-						newQuiz.Answers.Add(UI.ReturnOneAnswer());
-					}
+                            int disAllowMoreCorrectAnswersThenAllButOne = newQuiz.Answers.Count;
 
-					int disAllowMoreCorrectAnswersThenAllButOne = newQuiz.Answers.Count;
+                            do
+                            {
+                                int correctAnswerChosen = UI.TakeOneCorrectAnswerAndParse(newQuiz);
+                                correctAnswerChosen--;
 
-					do
-					{
-						int correctAnswerChosen = UI.TakeOneCorrectAnswerAndParse(newQuiz);
-						correctAnswerChosen--;
+                                if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
+                                {
+                                    newQuiz.Answers[correctAnswerChosen] += "*";
+                                    UI.MarkedasCorrectAnswerPrint();
+                                }
+                                else
+                                {
+                                    UI.AlreadyMarkedAsCorrectPrint();
+                                }
 
-						if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
-						{
-							newQuiz.Answers[correctAnswerChosen] += "*";
-							UI.MarkedasCorrectAnswerPrint();
-						}
-						else
-						{
-                            UI.AlreadyMarkedAsCorrectPrint();
+                                // disallows more correct answers then answers count minus one, so all can be correct but one
+                                if (newQuiz.Answers.Count - 1 < disAllowMoreCorrectAnswersThenAllButOne)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    UI.AddAnotherAnswerPrint();
+                                }
+
+                            }
+                            while (Console.ReadLine() == "y");
+
+                            quizList.Add(newQuiz);
+                            break;
                         }
+                    case 1:
+                        {
+                            UI.IfYouWinItsOnePointPrint();
 
-						// disallows more correct answers then answers count minus one, so all can be correct but one
-						if (newQuiz.Answers.Count - 1 < disAllowMoreCorrectAnswersThenAllButOne)
-						{
-							break;
-						}
-						else
-						{
-							UI.AddAnotherAnswerPrint();
-						}
+                            List<int> ourrandomquestions = new();
 
-					}
-					while (Console.ReadLine() == "y");
+                            // decides how many questions we should be picking
+                            int counter = Constants.NUMBEROFQUESTIONSTOBEASKED;
 
-					quizList.Add(newQuiz);
-				}
+                            // make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
+                            do
+                            {
+                                Random OurRandom = new();
 
-				else if (choice == 1) // play quiz
-				{
-					UI.IfYouWinItsOnePointPrint();
+                                int ourIntForList = OurRandom.Next(quizList.Count);
+                                // if randomed int isnt in the list already, do this
+                                if (!ourrandomquestions.Contains(ourIntForList))
+                                {
+                                    ourrandomquestions.Add(ourIntForList);
+                                    counter--;
+                                }
 
-					List<int> ourrandomquestions = new();
+                            }
+                            while (counter > 0);
 
-					// decides how many questions we should be picking
-					int counter = Constants.NUMBEROFQUESTIONSTOBEASKED;
+                            foreach (int currentquestion in ourrandomquestions)
+                            {
+                                Console.WriteLine(quizList[currentquestion].ToString());
+                                string[] answersToCheckIfCorrect;
+                                do
+                                {
+                                    answersToCheckIfCorrect = UI.ReadAnswer(quizList[currentquestion]);
 
-					// make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
-					do
-					{
-						Random OurRandom = new();
+                                    if (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1)
+                                    {
+                                        UI.InputTooLongPrint();
+                                    }
 
-						int ourIntForList = OurRandom.Next(quizList.Count);
-						// if randomed int isnt in the list already, do this
-						if (!ourrandomquestions.Contains(ourIntForList))
-						{
-							ourrandomquestions.Add(ourIntForList);
-							counter--;
-						}
+                                    if (answersToCheckIfCorrect.Contains(Constants.MINGUESSASSTRING))
+                                    {
+                                        UI.InputofZeroNotAllowed();
+                                    }
 
-					}
-					while (counter > 0);
+                                } // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
+                                while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains(Constants.MINGUESSASSTRING));
 
-					foreach (int currentquestion in ourrandomquestions)
-					{
-						Console.WriteLine(quizList[currentquestion].ToString());
-						string[] answersToCheckIfCorrect;
-						do
-						{
-							answersToCheckIfCorrect = UI.ReadAnswer(quizList[currentquestion]);
+                                List<int> parsedandWithinBoundsInt = null;
 
-							if (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1)
-							{
-								UI.InputTooLongPrint();
-							}
+                                parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
+                                // parse, point and evaluation to check if your answer is correct
 
-							if (answersToCheckIfCorrect.Contains(Constants.MINGUESSASSTRING))
-							{
-								UI.InputofZeroNotAllowed();
-							}
+                                bool wasTheAnswerCorrect;
 
-						} // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
-						while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains(Constants.MINGUESSASSTRING));
+                                wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedandWithinBoundsInt);
 
-						List<int> parsedandWithinBoundsInt = null;
+                                if (wasTheAnswerCorrect)
+                                {
+                                    UI.ThatIsCorrectPrint();
+                                    GameLogic.AddPoints();
+                                }
+                                else
+                                {
+                                    UI.ThatisNotCorrectPrint();
+                                }
 
-                        parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
-                        // parse, point and evaluation to check if your answer is correct
+                                parsedandWithinBoundsInt.Clear();
+                                UI.CurrentScorePrint(GameLogic.currentScore);
 
-							bool wasTheAnswerCorrect;
+                            }
+                            break;
 
-								wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedandWithinBoundsInt);
-
-								if (wasTheAnswerCorrect)
-								{
-									UI.ThatIsCorrectPrint();
-									GameLogic.AddPoints();
-								}
-								else
-								{
-									UI.ThatisNotCorrectPrint();
-								}
-
-						parsedandWithinBoundsInt.Clear();
-						UI.CurrentScorePrint(GameLogic.currentScore);
-						
-					}
-
-				}
-
-				else if (choice == 2)
-				{
-					UI.PrintOurQuizList(quizList);
-				}
-
-				else if (choice == 3)
-				{
-					// writes our questions into the XML
-					GameLogic.WriteToXML(quizList);
-					// exits
-					Environment.Exit(0);
-				}
-
-			}
-			while (true);
-
-		}
-
-	}
-
+                        }
+                    case 2:
+                        {
+                            UI.PrintOurQuizList(quizList);
+                            break;
+                        }
+                    case 3:
+                        {
+                            // writes our questions into the XML
+                            GameLogic.WriteToXML(quizList);
+                            // exits
+                            Environment.Exit(0);
+                            break;
+                        }
+                }
+            } while (true);
+        }
+    }
 }
+
+
+
