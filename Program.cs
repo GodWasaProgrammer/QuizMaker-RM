@@ -111,7 +111,7 @@ namespace QuizMaker_RM
 						} // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
 						while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains("0"));
 
-						List<int> parsedandWithinBoundsInt;
+						List<int> parsedandWithinBoundsInt = null;
 						// parse, point and evaluation to check if your answer is correct
 						foreach (string answerToParseAndEvaluate in answersToCheckIfCorrect)
 						{
@@ -134,8 +134,9 @@ namespace QuizMaker_RM
 							}
 
 						}
-
+						parsedandWithinBoundsInt.Clear();
 						UI.CurrentScorePrint(GameLogic.currentScore);
+						
 					}
 
 				}
