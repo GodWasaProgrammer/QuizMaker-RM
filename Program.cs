@@ -35,13 +35,10 @@
                                 newQuiz.Answers.Add(UI.ReturnOneAnswer());
                             }
 
-                            int disAllowMoreCorrectAnswersThenAllButOne = newQuiz.Answers.Count;
-
                             do
                             {
                                 int correctAnswerChosen = UI.TakeOneCorrectAnswerAndParse(newQuiz);
-                                correctAnswerChosen--;
-
+                                
                                 if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
                                 {
                                     newQuiz.Answers[correctAnswerChosen] += "*";
@@ -53,7 +50,7 @@
                                 }
 
                                 // disallows more correct answers then answers count minus one, so all can be correct but one
-                                if (newQuiz.Answers.Count - 1 < disAllowMoreCorrectAnswersThenAllButOne)
+                                if (newQuiz.Answers.Count - 1 < newQuiz.Answers.Count)
                                 {
                                     break;
                                 }

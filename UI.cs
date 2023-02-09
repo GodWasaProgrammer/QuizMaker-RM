@@ -107,6 +107,7 @@
             }
             while (answer > newQuiz.Answers.Count || isParsable == false);
 
+            answer--;
             return answer;
         }
 
