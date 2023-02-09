@@ -48,10 +48,14 @@ namespace QuizMaker_RM
 						if (!newQuiz.Answers[correctAnswerChosen].Contains("*"))
 						{
 							newQuiz.Answers[correctAnswerChosen] += "*";
-							UI.AlreadyMarkedAsCorrectPrint();
+							UI.MarkedasCorrectAnswerPrint();
 						}
-
-						if (newQuiz.Answers.Count + 1 > disAllowMoreCorrectAnswersThenAllButOne)
+						else
+						{
+                            UI.AlreadyMarkedAsCorrectPrint();
+                        }
+						// disallows more correct answers then answers count minus one, so all can be correct but one
+						if (newQuiz.Answers.Count - 1 < disAllowMoreCorrectAnswersThenAllButOne)
 						{
 							break;
 						}
