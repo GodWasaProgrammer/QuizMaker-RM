@@ -106,12 +106,12 @@ namespace QuizMaker_RM
 
 							if (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1)
 							{
-								Console.WriteLine("your input is too long. cant be more answers then the amount of answers minus one");
+								UI.InputTooLongPrint();
 							}
 
 							if (answersToCheckIfCorrect.Contains(Constants.MINGUESSASSTRING))
 							{
-								Console.WriteLine("Input of 0 is not allowed.");
+								UI.InputofZeroNotAllowed();
 							}
 
 						} // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one

@@ -264,5 +264,15 @@
 		{
 			Console.WriteLine("Your answer has been marked as the correct one.");
         }
+
+		public static void InputTooLongPrint()
+		{
+            Console.WriteLine("your input is too long. cant be more answers then the amount of answers minus one");
+        }
+
+		public static void InputofZeroNotAllowed()
+		{
+            Console.WriteLine("Input of 0 is not allowed.");
+        }
 	}
 }
