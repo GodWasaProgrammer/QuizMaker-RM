@@ -2,17 +2,80 @@
 {
     public class UI
     {
-		public static string[] ReadAnswer(Quiz currentQuiz)
+		public static List<int> ReadMultiStringAnswers(Quiz currentQuiz)
 		{
-			string[] stringArray;
+			// reading part
+			string[] answersToCheckIfCorrectStringArray;
+			do
+			{
+				{
+					Console.WriteLine("Pick your answer by index");
 
-			Console.WriteLine("Pick your answer by index");
+					string multichoiceAnswer = Console.ReadLine();
 
-			string multichoiceAnswer = Console.ReadLine();
+					answersToCheckIfCorrectStringArray = multichoiceAnswer.Split(",");
+				}
 
-			stringArray = multichoiceAnswer.Split(",");
+				if (answersToCheckIfCorrectStringArray.Length > currentQuiz.Answers.Count - 1)
+				{
+					UI.PrintInputTooLong();
+				}
 
-			return stringArray;
+				if (answersToCheckIfCorrectStringArray.Contains(Constants.MIN_GUESS_STRING))
+				{
+					UI.PrintNotAllowed();
+				}
+
+			} // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
+			while (answersToCheckIfCorrectStringArray.Length > currentQuiz.Answers.Count - 1 || answersToCheckIfCorrectStringArray.Contains(Constants.MIN_GUESS_STRING));
+
+			// List of Acceptable integers to pass out, these are withinbounds, exist in the current list of answers, and are not a char string or too high or low
+			List<int> parsedandWithinBoundsIntegerIndexList = new();
+
+			// parse part
+			foreach (string AnswerToParse in answersToCheckIfCorrectStringArray)
+			{
+				bool isParsable = int.TryParse(AnswerToParse, out int parsedNumber);
+
+				// if we managed to parse it
+				if (isParsable)
+				{
+					// and its above 0, which matters because theres lists and arrays intermixed, so we have to go minus one to stay in state
+					if (parsedNumber > 0)
+					{
+						parsedNumber--;
+					}
+
+					// and our number doesnt exceed the count of currentquiz.answers
+					if (parsedNumber < currentQuiz.Answers.Count)
+					{
+						// and our answer is matched to a indexposition in answers
+
+						if (currentQuiz.Answers.IndexOf(currentQuiz.Answers[parsedNumber]) == parsedNumber)
+						{
+							// and it doesnt already exist in our out list, add to our verified list of numbers 
+							if (!parsedandWithinBoundsIntegerIndexList.Contains(parsedNumber))
+							{
+								parsedandWithinBoundsIntegerIndexList.Add(parsedNumber);
+							}
+							else
+							{
+								Console.WriteLine("Duplicate entries are not allowed.");
+							}
+
+						}
+
+					}
+					// otherwise dump that shit
+				}
+				else
+				{
+					Console.WriteLine($"your input of {AnswerToParse} is not parsable or of an invalid value and will be discarded");
+				}
+
+			}
+
+			return parsedandWithinBoundsIntegerIndexList;
 		}
 
 		public static string ReadAnswer()
@@ -180,53 +243,6 @@
         public static void PrintCurrentQuizObject(Quiz currentQuiz)
         {
             Console.WriteLine(currentQuiz.ToString());
-        }
-
-        public static List<int> ParseAnswers(Quiz currentQuiz, string[] StringArray)
-        {
-            List<int> parsedandWithinBoundsIntegerIndexList = new();
-
-            foreach (string AnswerToParse in StringArray)
-            {
-                bool isParsable = int.TryParse(AnswerToParse, out int parsedNumber);
-
-                // if we managed to parse it
-                if (isParsable)
-                {
-                    if (parsedNumber > 0)
-                    {
-                        parsedNumber--;
-                    }
-
-                    // and our number doesnt exceed the count of currentquiz.answers
-                    if (parsedNumber < currentQuiz.Answers.Count)
-                    {
-                        // and our answer is matched to a indexposition in answers
-
-                        if (currentQuiz.Answers.IndexOf(currentQuiz.Answers[parsedNumber]) == parsedNumber)
-                        {
-                            if (!parsedandWithinBoundsIntegerIndexList.Contains(parsedNumber))
-                            {
-                                parsedandWithinBoundsIntegerIndexList.Add(parsedNumber);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Duplicate entries are not allowed.");
-                            }
-
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine($"your input of {AnswerToParse} is not parsable or of an invalid value and will be discarded");
-                }
-
-            }
-
-            return parsedandWithinBoundsIntegerIndexList;
         }
 
         public static void PrintMenu()

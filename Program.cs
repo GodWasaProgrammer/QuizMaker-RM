@@ -81,13 +81,13 @@
                             // make a list of 5 ints to decide which questions we will ask, this represents the indexposition of that question.
                             do
                             {
-                                Random OurRandom = new();
+                                Random Random = new();
 
-                                int ourIntForList = OurRandom.Next(quizList.Count);
+                                int IntForList = Random.Next(quizList.Count);
                                 // if randomed int isnt in the list already, do this
-                                if (!ourrandomquestions.Contains(ourIntForList))
+                                if (!ourrandomquestions.Contains(IntForList))
                                 {
-                                    ourrandomquestions.Add(ourIntForList);
+                                    ourrandomquestions.Add(IntForList);
                                     counter--;
                                 }
 
@@ -98,26 +98,7 @@
                             {
                                 UI.PrintCurrentQuizObject(quizList[currentquestion]);
 
-                                string[] answersToCheckIfCorrect;
-
-                                do
-                                {
-                                    answersToCheckIfCorrect = UI.ReadAnswer(quizList[currentquestion]);
-
-                                    if (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1)
-                                    {
-                                        UI.PrintInputTooLong();
-                                    }
-
-                                    if (answersToCheckIfCorrect.Contains(Constants.MIN_GUESS_STRING))
-                                    {
-                                        UI.PrintNotAllowed();
-                                    }
-
-                                } // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
-                                while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains(Constants.MIN_GUESS_STRING));
-
-                                List<int> parsedAndWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
+                                List<int> parsedAndWithinBoundsInt = UI.ReadMultiStringAnswers(quizList[currentquestion]);
 
 								List<bool> wasTheAnswerCorrectList = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedAndWithinBoundsInt);
 
