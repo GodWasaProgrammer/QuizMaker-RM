@@ -2,12 +2,20 @@
 {
     public class UI
     {
-        public static void PrintWelcomeMessage()
-        {
-            Console.WriteLine("Welcome to Our Quiz Maker!");
-            Console.WriteLine("This Software allows you to make your own quiz!");
-        }
-        public static string ReadAnswer()
+		public static string[] ReadAnswer(Quiz currentQuiz)
+		{
+			string[] stringArray;
+
+			Console.WriteLine("Pick your answer by index");
+
+			string multichoiceAnswer = Console.ReadLine();
+
+			stringArray = multichoiceAnswer.Split(",");
+
+			return stringArray;
+		}
+
+		public static string ReadAnswer()
         {
             string input;
 
@@ -111,20 +119,47 @@
             return answer;
         }
 
-        public static void PrintAnswers(Quiz newQuiz)
+		public static int ReadMenuInput()
+		{
+			bool didItParse;
+			int choice;
+			do
+			{
+				didItParse = int.TryParse(Console.ReadLine(), out choice);
+				choice--;
+
+				if (didItParse == false)
+				{
+					Console.WriteLine("Could not Parse your input.");
+				}
+
+				if (choice > Constants.MAX_MENU_CHOICE)
+				{
+					Console.WriteLine("Incorrect Choice");
+					didItParse = false;
+				}
+
+			}
+			while (didItParse == false);
+
+			return choice;
+
+		}
+
+		public static string ReadMenuChoice()
+		{
+			string choice = Console.ReadLine();
+
+			return choice;
+		}
+
+		public static void PrintAnswers(Quiz newQuiz)
         {
             for (int answers = 0; answers < newQuiz.Answers.Count(); answers++)
             {
                 Console.WriteLine($"{answers + 1}. {newQuiz.Answers[answers]}");
             }
 
-        }
-
-        public static string ReadMenuChoice()
-        {
-            string choice = Console.ReadLine();
-
-            return choice;
         }
 
         public static void PrintQuizList(List<Quiz> quizList)
@@ -142,36 +177,9 @@
             Console.WriteLine($"Your Current Score is:{currentScore}");
         }
 
-        public static int ReadMenuInput()
+        public static void PrintCurrentQuizObject(Quiz currentQuiz)
         {
-            bool didItParse;
-            int choice;
-            do
-            {
-                didItParse = int.TryParse(Console.ReadLine(), out choice);
-                choice--;
-
-                if (didItParse == false)
-                {
-                    Console.WriteLine("Could not Parse your input.");
-                }
-
-                if (choice > Constants.MAX_MENU_CHOICE)
-                {
-                    Console.WriteLine("Incorrect Choice");
-                    didItParse = false;
-                }
-
-            }
-            while (didItParse == false);
-
-            return choice;
-
-        }
-
-        public static void PrintCurrentQuizObject(Quiz currentQuizObject)
-        {
-            Console.WriteLine(currentQuizObject.ToString());
+            Console.WriteLine(currentQuiz.ToString());
         }
 
         public static List<int> ParseAnswers(Quiz currentQuiz, string[] StringArray)
@@ -221,19 +229,6 @@
             return parsedandWithinBoundsIntegerIndexList;
         }
 
-        public static string[] ReadAnswer(Quiz currentQuiz)
-        {
-            string[] stringArray;
-
-            Console.WriteLine("Pick your answer by index");
-
-            string multichoiceAnswer = Console.ReadLine();
-
-            stringArray = multichoiceAnswer.Split(",");
-
-            return stringArray;
-        }
-
         public static void PrintMenu()
         {
             Console.WriteLine("Menu:\n1.Add a New Quiz! \n2.Play A round of Quiz \n3.Print All questions \n4.Exit Software");
@@ -279,5 +274,11 @@
             Console.WriteLine("Input of 0 is not allowed.");
         }
 
-    }
+		public static void PrintWelcomeMessage()
+		{
+			Console.WriteLine("Welcome to Our Quiz Maker!");
+			Console.WriteLine("This Software allows you to make your own quiz!");
+		}
+
+	}
 }

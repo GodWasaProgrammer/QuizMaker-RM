@@ -117,26 +117,27 @@
                                 } // disallows answers of 0, and also multistring answers who is more then amount of answers, and also sets max answers to amount of answers minus one
                                 while (answersToCheckIfCorrect.Length > quizList[currentquestion].Answers.Count - 1 || answersToCheckIfCorrect.Contains(Constants.MIN_GUESS_STRING));
 
-                                List<int> parsedandWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
+                                List<int> parsedAndWithinBoundsInt = UI.ParseAnswers(quizList[currentquestion], answersToCheckIfCorrect);
 
-                                bool wasTheAnswerCorrect;
+								List<bool> wasTheAnswerCorrectList = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedAndWithinBoundsInt);
 
-                                wasTheAnswerCorrect = GameLogic.CheckIfAnswerIsCorrect(quizList[currentquestion], parsedandWithinBoundsInt);
-
-                                if (wasTheAnswerCorrect)
+                                foreach (bool wasTheAnswerCorrect in wasTheAnswerCorrectList)
                                 {
-                                    UI.PrintThatIsCorrect();
-                                    GameLogic.AddPoints();
-                                }
-                                else
-                                {
-                                    UI.PrintThatIsNotCorrect();
-                                }
+									if (wasTheAnswerCorrect)
+									{
+										UI.PrintThatIsCorrect();
+										GameLogic.AddPoints();
+									}
+									else
+									{
+										UI.PrintThatIsNotCorrect();
+									}
 
-                                parsedandWithinBoundsInt.Clear();
-                                UI.PrintCurrentScore(GameLogic.currentScore);
+								}
 
-                            }
+								parsedAndWithinBoundsInt.Clear();
+								UI.PrintCurrentScore(GameLogic.GetScore());
+							}
                             break;
 
                         }

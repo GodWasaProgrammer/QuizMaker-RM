@@ -3,8 +3,14 @@
 A software to make a Quiz with multiple option answers
 The software then evaluates if you have made the choice that is correct or not.
 
-At first you will be prompted if you wish to add a new trivia question, if you enter y, you will be able to add as many as you wish.
-Then the program will ask if you wish to play the quiz or not, 5 questions will be selected and presented to you, for each correct question,
-you will receive 1 point. 
+In The Main Menu you have four choices, add new quiz, play quiz, print quiz, exit.
 
-The Correct answers are indicated in the XML by an asterisk, these are not visible in the software.
+add new quiz asks your question, then adds that to a quizobject, asks for your answers, then adds that to the object.
+It then ask for your correct answer(s).
+
+Game Parameters is:
+------------------------------------------------------
+Questions that will be asked on calling play quiz: 5
+Answers have a maximum length of: 5, a minimum of: 2.
+Max Correct Answers are: the amount of answers minus:1
+-------------------------------------------------------

@@ -29,24 +29,27 @@ namespace QuizMaker_RM
 
 			return quizList;
 		}
-		// supports multiple answers as correct
-		public static bool CheckIfAnswerIsCorrect(Quiz quiz, List<int> currentAnswerToCheckIfCorrect)
+
+		public static int GetScore()
 		{
-            bool wasTheAnswerCorrect = false;
-			
-			foreach (int answer in currentAnswerToCheckIfCorrect)
+			return currentScore;
+		}
+
+		public static List<bool> CheckIfAnswerIsCorrect(Quiz quiz, List<int> currentAnswerToCheckIfCorrect)
+		{
+			List<bool> WinOrLoseResults = new();
+
+			for (int answer = 0; answer < currentAnswerToCheckIfCorrect.Count; answer++)
 			{
 				if (answer < quiz.Answers.Count)
 				{
-					int answerByIndex = answer;
-
-					if (quiz.Answers[answerByIndex].Contains('*'))
+					if (quiz.Answers[answer].Contains('*'))
 					{
-						wasTheAnswerCorrect = true;
+						WinOrLoseResults.Add(true);
 					}
 					else
 					{
-						wasTheAnswerCorrect = false;
+						WinOrLoseResults.Add(false);
 					}
 
 				}
@@ -54,12 +57,10 @@ namespace QuizMaker_RM
 				{
 					throw new ArgumentOutOfRangeException("Parameter is out of range.");
 				}
+
 			}
 
-			// should always pass first if
-            
-
-            return wasTheAnswerCorrect;
+			return WinOrLoseResults;
 		}
 
         public static void AddPoints()
