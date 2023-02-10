@@ -55,7 +55,7 @@
                     Console.WriteLine($"You have to put {Constants.MIN_ANSWERS} or more answers for a question");
                 }
 
-                if (amountOfAnswers > Constants.MAX_ANSWERS)
+                else if (amountOfAnswers > Constants.MAX_ANSWERS)
                 {
                     didItParse = false;
                     Console.WriteLine($"Too many answers. needs to be less then {Constants.MAX_ANSWERS}");
