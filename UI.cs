@@ -86,14 +86,12 @@
             {
                 Console.WriteLine($"Enter Your Answer");
 
-
                 input = Console.ReadLine();
 
                 if (input == string.Empty || input == null)
                 {
                     Console.WriteLine("You have to type an answer.");
                 }
-
 
             }
             while (input == string.Empty || input == null);
@@ -102,7 +100,6 @@
         }
         public static int ReadAmountOfAnswers()
         {
-
             int amountOfAnswers;
             bool didItParse;
 
