@@ -6,9 +6,9 @@ namespace QuizMaker_RM
 	{
 		public const string PATH = "../../../QuizSheet.xml";
 		static XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
-        public static int currentScore = 0;
-		
-        public static void WriteToXML(List<Quiz> quizList)
+        private static int currentScore;
+
+		public static void WriteToXML(List<Quiz> quizList)
 		{
 			// writes our written quiz to our xml QuizSheet.xml
 			using (FileStream file = File.OpenWrite(PATH))
