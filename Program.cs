@@ -73,7 +73,7 @@
                         {
                             UI.PrintOnePointToWin();
 
-                            List<int> ourrandomquestions = new();
+                            List<int> randomquestions = new();
 
                             // decides how many questions we should be picking
                             int counter = Constants.QUESTION_COUNT;
@@ -85,16 +85,16 @@
 
                                 int IntForList = Random.Next(quizList.Count);
                                 // if randomed int isnt in the list already, do this
-                                if (!ourrandomquestions.Contains(IntForList))
+                                if (!randomquestions.Contains(IntForList))
                                 {
-                                    ourrandomquestions.Add(IntForList);
+                                    randomquestions.Add(IntForList);
                                     counter--;
                                 }
 
                             }
                             while (counter > 0);
 
-                            foreach (int currentquestion in ourrandomquestions)
+                            foreach (int currentquestion in randomquestions)
                             {
                                 UI.PrintCurrentQuizObject(quizList[currentquestion]);
 
